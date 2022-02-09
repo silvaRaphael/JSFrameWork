@@ -13,7 +13,6 @@ export default function TextInput(params) {
   if(params.type && typeof(params.type) == 'string') element.type = params.type
 
   if(params.name && typeof(params.name) == 'string') element.name = params.name
-<<<<<<< HEAD
   
   if(params.value && typeof(params.value) == 'string') element.value = params.value
 
@@ -40,13 +39,6 @@ export default function TextInput(params) {
 
     Style(styleParams)
   }
-=======
-
-  if(params.placeholder && typeof(params.placeholder) == 'string') element.placeholder = params.placeholder
-
-  if(params.child) render(params.child, element)
-  
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
   
   return element
 }

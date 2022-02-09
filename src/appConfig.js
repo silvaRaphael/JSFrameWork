@@ -1,18 +1,11 @@
 export const appConfig = {
 
-<<<<<<< HEAD
   appRoot: "#root",
 
   appName: "APP",
   appAuthor: "",
   appDescription: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
   appLogo: "/assets/favicons/favicon.ico",
-=======
-  appName: "APP",
-  appAuthor: "",
-  appDescription: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
-  appLogo: "/assets/icon/favicon.ico",
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
 
   appFonts: {
     primary: "sans-serif",
@@ -21,7 +14,6 @@ export const appConfig = {
   },
 
   appMetrics: {
-<<<<<<< HEAD
     subTitle: "1.5em",
     bigText: "2em",
     normalText: "1em",
@@ -38,16 +30,6 @@ export const appConfig = {
     bgDark: "#1b1b1b",
     shadow: "#2b2b2b80",
     
-=======
-    title: "2rem",
-    subTitle: "1.5rem",
-    normalText: "1rem",
-    mdText: ".8rem",
-    smText: ".6rem",
-  },
-
-  appColors: {
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
     primary: "#000",
     secondary: "#555",
     tertiary: "#fff",
@@ -58,10 +40,7 @@ export const appConfig = {
 
 }
 
-<<<<<<< HEAD
 export const appRoot = appConfig.appRoot
-=======
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
 export const appName = appConfig.appName
 export const appAuthor = appConfig.appAuthor
 export const appDescription = appConfig.appDescription

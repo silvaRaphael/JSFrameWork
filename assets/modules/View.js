@@ -17,7 +17,6 @@ export default function View(params) {
       render(item, element)
     });
   }
-<<<<<<< HEAD
 
   element.dataset.view = ''
 
@@ -36,11 +35,6 @@ export default function View(params) {
 
     Style(styleParams)
   }
-=======
-
-  element.dataset.view = ''
-
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
   
   return element
 }

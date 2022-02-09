@@ -4,19 +4,10 @@ import render from './render.js'
 export default function Text(params) {
 
   let type = 'p'
-<<<<<<< HEAD
   
   if(params.type && typeof(params.type) == 'string') {
     type = params.type
   }
-=======
-
-  if(params.type && typeof(params.type) == 'string') {
-    type = params.type
-  }
-  
-  let element = document.createElement(type)
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
 
   let element = document.createElement(type)
   
@@ -25,7 +16,6 @@ export default function Text(params) {
   if(params.id && typeof(params.id) == 'string') element.id = params.id
 
   if(params.child) render(params.child, element)
-<<<<<<< HEAD
 
   if(params.style && typeof params.style == 'object') {
 
@@ -43,16 +33,5 @@ export default function Text(params) {
     Style(styleParams)
   }
 
-=======
-
-
-  Style({
-    selector: `${type}`,
-    color: "black",
-    'font-family': "sans-serif",
-    'font-size': '1rem',
-  })
-
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
   return element
 }

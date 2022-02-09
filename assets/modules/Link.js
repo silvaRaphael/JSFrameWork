@@ -25,7 +25,6 @@ export default function Link(params) {
     });
   }
 
-<<<<<<< HEAD
   if(params.style && typeof params.style == 'object') {
 
     let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
@@ -41,8 +40,6 @@ export default function Link(params) {
 
     Style(styleParams)
   }
-=======
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
 
   return element
 }

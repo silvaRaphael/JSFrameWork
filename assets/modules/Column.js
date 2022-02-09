@@ -17,7 +17,6 @@ export default function Column(params) {
       render(item, element)
     });
   }
-<<<<<<< HEAD
 
   element.dataset.column = ''
 
@@ -36,12 +35,6 @@ export default function Column(params) {
 
     Style(styleParams)
   }
-=======
-
-
-  element.dataset.column = ''
-
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
 
   return element
 }

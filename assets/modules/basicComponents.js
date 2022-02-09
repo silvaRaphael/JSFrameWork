@@ -20,10 +20,6 @@ export {
   Image,
   Column,
   Row,
-<<<<<<< HEAD:assets/modules/basicComponents.js
   TextInput,
   Center
-=======
-  TextInput
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1:assets/modules/index.js
 }

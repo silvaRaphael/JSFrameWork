@@ -7,18 +7,11 @@ export default function Style(params) {
   let styleSheet = elementStyle.sheet
 
   rules.forEach(rule => {
-<<<<<<< HEAD
 
     let j = 1
     let selector = rule[0][1]
     let propStr = ''
 
-=======
-    let j = 1
-    let selector = rule[0][1]
-    let propStr = ''
-    
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
     if (Array.isArray(rule[1][0])) {
       rule = rule[1]
       j = 0
@@ -30,12 +23,9 @@ export default function Style(params) {
       let newProp = prop[1]
 
       if(index != 0) {
-<<<<<<< HEAD
 
         prop[0] = prop[0].split(/(?=[A-Z])/).join("-").toLowerCase()
 
-=======
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
         let firstL = prop[1].charAt(0)
         let lastL = prop[1].charAt(prop[1].length - 1)
         
@@ -54,8 +44,4 @@ export default function Style(params) {
     styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length)
   })
 
-<<<<<<< HEAD
-=======
-  return rules[0][0][1]
->>>>>>> 3520ccf15fbfcffe56c877a21e081665854b2bf1
 }
