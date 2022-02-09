@@ -1,5 +1,3 @@
-<strong>text</strong>
-
 == CONTAINER ==
 
   Center({
