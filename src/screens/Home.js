@@ -1,5 +1,5 @@
 import { useEffect, useState } from '../../assets/modules/states.js'
-import { View, Text, Image, Button, Column, TextInput, Center } from '../../assets/modules/basicComponents.js'
+import { View, Text, Image, Button, Column, TextInput, Center, GestureDetector } from '../../assets/modules/basicComponents.js'
 import Style from '../../assets/modules/Style.js'
 
 export default function Home() {
@@ -10,31 +10,36 @@ export default function Home() {
   return (
     Column({
       children: [
-        Text({
-          style: {
-            color: "red",
-            fontWeight: "bold"
+        GestureDetector({
+          onClick: (e) => {
+            alert(`Você clicou em ${e.target.textContent}`)
           },
-          child: `THE NUMBER IS ${num}`
+          child: Text({
+            style: {
+              color: "red",
+              fontWeight: "bold"
+            },
+            child: `THE NUMBER IS ${num}`
+          })
         }),
         Button({
           child: "ADD 1",
-          onPressed: () => {
+          onClick: () => {
             setNum(num + 1)
           }
         }),
         Button({
           child: "REMOVE 1",
-          onPressed: () => {
+          onClick: () => {
             setNum(num - 1)
           }
         }),
         TextInput({
           placeHolder: "NOME",
+          id: "textInput",
           type: "text",
           name: "nome",
           value: name,
-          onBlur: ({value}) => setName(value),
         }),
         Text({
           type: "span",

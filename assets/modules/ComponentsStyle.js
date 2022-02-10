@@ -23,6 +23,10 @@ export default function ComponentsStyle() {
       textDecoration: "none"
     }),
     Style({
+      selector: [ "[data-pointer]" ],
+      cursor: "pointer"
+    }),
+    Style({
       selector: [ "button", "input" ],
       color: appColors.primary,
       fontFamily: appFonts.primary,

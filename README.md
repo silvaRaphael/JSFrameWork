@@ -43,6 +43,11 @@
 
 == CLICKABLE ==
 
+  GestureDetector({
+    child: string | element,
+    onClick...(events)
+  })
+
   Button({
     className: string,
     id: string,

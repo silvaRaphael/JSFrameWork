@@ -10,8 +10,8 @@ export default function Button(params) {
 
   if(params.id && typeof(params.id) == 'string') element.id = params.id
   
-  if(params.onPressed && typeof(params.onPressed) == 'function') {
-    element.onclick = params.onPressed
+  if(params.onClick && typeof(params.onClick) == 'function') {
+    element.onclick = params.onClick
   }
 
   if(params.child) render(params.child, element)

@@ -18,12 +18,6 @@ export default function TextInput(params) {
 
   if(params.placeHolder && typeof(params.placeHolder) == 'string') element.placeholder = params.placeHolder
 
-  if(params.onBlur && typeof params.onBlur == 'function') {
-    element.addEventListener("blur", function( event ) {
-      params.onBlur(event.target)
-    }, true);
-  }
-
   if(params.style && typeof params.style == 'object') {
 
     let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
