@@ -49,7 +49,8 @@
 
   GestureDetector({
     child: string | element,
-    onClick...(events)
+    onClick: function,
+    ...(events)
   })
 
   Button({
