@@ -30,6 +30,8 @@
     child: string | element,
     children: array [ string | element ],
   })
+  
+== CONTAINER ==
 
 == TEXT ==
 
@@ -40,6 +42,8 @@
     child: string | element,
     type: (tag) string,
   })
+
+== TEXT ==
 
 == CLICKABLE ==
 
@@ -66,6 +70,8 @@
     target: string,
   })
 
+== CLICKABLE ==
+
 == IMAGE ==
 
   Image({
@@ -78,6 +84,8 @@
     sizeMode: string,
     size: array [ number | string ]
   })
+
+== IMAGE ==
 
 == INPUT ==
 
@@ -92,9 +100,13 @@
     onBlur: function,
   })
 
+== INPUT ==
+
 == STYLE ==
 
   Style({
     selector: array [ string ] | string,
     (property): (value) string,
   })
+
+== STYLE ==
