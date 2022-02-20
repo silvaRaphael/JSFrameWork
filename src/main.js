@@ -1,13 +1,24 @@
-import Configs from './setup.js'
-import render from '../assets/modules/render.js'
-import setup from './setup.js'
+import { appRoot, Colors, Sizes, Fonts, BreakPoints } from "../config/config.js";
+import { render, useState } from "../assets/modules/hooks.js";
+import { Center, Text } from "../assets/modules/index.js";
 
-import Home from './screens/Home.js'
 
-export default function Main() {
+if (window.matchMedia(BreakPoints.desktop).matches) Sizes.maxWidth = `calc(1024px - 4rem)`
+
+export const App = () => {
+
   return (
-    Home()
+    Center({
+      style: {
+        height: '100vh',
+        backgroundColor: Colors.bodyColor
+      },
+      child: Text({
+        style: { color: Colors.textColor },
+        child: '<BEM-VINDO>'
+      })
+    })
   )
 }
 
-render(Main())
+render(App(), document.querySelector("#root"))

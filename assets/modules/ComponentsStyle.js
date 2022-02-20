@@ -1,10 +1,11 @@
-import { appColors, appFonts, appMetrics } from "../../src/appConfig.js";
-import Style from "./Style.js";
+import { Colors, Fonts, Sizes } from "../../config/config.js";
+import { Style } from "./index.js";
 
 export default function ComponentsStyle() {
   return (
     Style({
       selector: [ "*" ],
+      scrollBehavior: "smooth",
       margin: "0",
       padding: "0",
       boxSizing: "border-box",
@@ -18,25 +19,29 @@ export default function ComponentsStyle() {
     }),
     Style({
       selector: [ "a", "p" ],
-      color: appColors.primary,
-      fontFamily: appFonts.primary,
+      color: Colors.textColor,
+      fontFamily: Fonts.primary,
       textDecoration: "none"
     }),
     Style({
-      selector: [ "[data-pointer]" ],
+      selector: [ "[data-pointer]", "a" ],
       cursor: "pointer"
     }),
     Style({
-      selector: [ "button", "input" ],
-      color: appColors.primary,
-      fontFamily: appFonts.primary,
-      fontSize: appMetrics.mdText,
+      selector: [ "button", "input", "textarea" ],
+      color: Colors.textColor,
+      fontFamily: Fonts.primary,
+      fontSize: Sizes.normalText,
       height: "fit-content",
       padding: ".25rem .5rem",
       border: "none",
       outline: "none",
-      background: appColors.light,
-      boxShadow: `0 0 .1rem ${appColors.dark}`,
+      background: Colors.textColor,
+      boxShadow: `0 0 .1rem ${Colors.bodyColor}`,
+    }),
+    Style({
+      selector: [ "input", "textarea" ],
+      width: '100%'
     }),
     Style({
       selector: [ "[data-row]", "[data-column]", "[data-view]", "[data-center]" ],
@@ -51,6 +56,12 @@ export default function ComponentsStyle() {
       selector: [ "[data-column]" ],
       flexDirection: "column",
       alignItems: "center",
+    }),
+    Style({
+      selector: [ "[data-view]" ],
+      flexDirection: "row",
+      justifyContent: "center",
+      width: "100%"
     }),
     Style({
       selector: [ "[data-center]" ],
