@@ -1,24 +1,74 @@
-import { appRoot, Colors, Sizes, Fonts, BreakPoints } from "../config/config.js";
-import { render, useState } from "../assets/modules/hooks.js";
-import { Center, Text } from "../assets/modules/index.js";
+import { render } from "../assets/modules/hooks.js";
+import { Router, RouterLink } from "../assets/modules/Router.js";
+import { Center, Column, Text } from "../assets/modules/index.js";
+import { Colors, Fonts, Sizes } from "../config/config.js";
 
+function Home() {
+  return Center({
+    style: {
+      height: '100vh',
+      backgroundColor: Colors.bodyColor
+    },
+    child: Column({
+      children: [
+        Text({
+          style: {
+            color: Colors.textColor,
+            fontFamily: Fonts.primary,
+            fontWeight: '500',
+            fontSize: Sizes.title
+          },
+          child: 'Home Page',
+        }),
+        Text({
+          child: 'Comece seu projeto em src/main.js'
+        })
+      ]
+    })
+  })
+}
 
-if (window.matchMedia(BreakPoints.desktop).matches) Sizes.maxWidth = `calc(1024px - 4rem)`
+function Error() {
+  return Center({
+    style: {
+      height: '100vh',
+      backgroundColor: Colors.bodyColor
+    },
+    child: Column({
+      children: [
+        Text({
+          style: {
+            color: Colors.textColor,
+            fontFamily: Fonts.primary,
+            fontWeight: '500',
+            fontSize: Sizes.title
+          },
+          child: 'Página não Encontrada!',
+        }),
+        RouterLink({
+          to: '/',
+          child: 'Ir para Home'
+        })
+      ]
+    })
+  })
+}
 
-export const App = () => {
-
+export default function AppRoutes() {
   return (
-    Center({
-      style: {
-        height: '100vh',
-        backgroundColor: Colors.bodyColor
-      },
-      child: Text({
-        style: { color: Colors.textColor },
-        child: '<BEM-VINDO>'
-      })
+    Router({
+      routes: [
+        {
+          component: Home(),
+          path: '/'
+        },
+        {
+          component: Error(),
+          path: '/error'
+        },
+      ]
     })
   )
 }
 
-render(App(), document.querySelector("#root"))
+render(AppRoutes())

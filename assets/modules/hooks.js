@@ -1,5 +1,6 @@
 import { appRoot } from '../../config/config.js';
-import { App } from '../../src/main.js';
+import { default as App } from '../../src/main.js';
+import { Router } from "./Router.js";
 
 const root = document.querySelector(appRoot)
 
@@ -29,7 +30,7 @@ function render(element, container) {
 const states = []
 let stateIndex = 0
 
-function reRender(oldState, newState) {
+function reRender() {
   stateIndex = 0
 
   root.firstChild.remove()
@@ -38,14 +39,13 @@ function reRender(oldState, newState) {
 
 function useState(initialState) {
   let index = stateIndex
-  let oldState = states[index] || initialState
 
   states[index] = states[index] || initialState
 
   const setState = newState => {
 
     states[index] = newState
-    reRender(oldState, states[index])
+    reRender()
   }
   stateIndex++
   return [ states[index], setState ]

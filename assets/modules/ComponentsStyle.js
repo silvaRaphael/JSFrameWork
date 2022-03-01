@@ -4,6 +4,15 @@ import { Style } from "./index.js";
 export default function ComponentsStyle() {
   return (
     Style({
+      fonts: Fonts?.fontsUrl
+    }),
+    Style({
+      selector: '#loading',
+      background: Colors?.bodyColor || '#fff',
+      position: 'absolute',
+      zIndex: '99999'
+    }),
+    Style({
       selector: [ "*" ],
       scrollBehavior: "smooth",
       margin: "0",
@@ -13,14 +22,18 @@ export default function ComponentsStyle() {
       textDecoration: "none"
     }),
     Style({
+      selector: 'body',
+      backgroundColor: Colors?.bodyColor
+    }),
+    Style({
       selector: [ "body > div:first-child" ],
       minHeight: "100vh",
       minWidth: "100%",
     }),
     Style({
-      selector: [ "a", "p" ],
-      color: Colors.textColor,
-      fontFamily: Fonts.primary,
+      selector: [ "a", "p", "span" ],
+      color: Colors?.textColor,
+      fontFamily: Fonts?.primary,
       textDecoration: "none"
     }),
     Style({
@@ -29,23 +42,26 @@ export default function ComponentsStyle() {
     }),
     Style({
       selector: [ "button", "input", "textarea" ],
-      color: Colors.textColor,
-      fontFamily: Fonts.primary,
-      fontSize: Sizes.normalText,
+      fontFamily: Fonts?.primary,
+      fontSize: Sizes?.normalText,
       height: "fit-content",
       padding: ".25rem .5rem",
       border: "none",
       outline: "none",
-      background: Colors.textColor,
-      boxShadow: `0 0 .1rem ${Colors.bodyColor}`,
+      background: Colors?.textColor,
+      boxShadow: `0 0 .1rem ${Colors?.bodyColor}`,
     }),
     Style({
       selector: [ "input", "textarea" ],
       width: '100%'
     }),
     Style({
-      selector: [ "[data-row]", "[data-column]", "[data-view]", "[data-center]" ],
+      selector: [ "[data-row]", "[data-column]", "[data-view]", "[data-center]", "[data-container]" ],
       display: "flex",
+    }),
+    Style({
+      selector: [ "[data-grid]" ],
+      display: "grid",
     }),
     Style({
       selector: [ "[data-row]" ],

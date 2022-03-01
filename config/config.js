@@ -1,29 +1,31 @@
-const appRoot = "#root"
+const appRoot = "#root";
 
 const Colors = {
-  bodyColor: '#001726',
-  bodyColor2: '#00111c',
-  bodyColor3: '#00060a',
-  textColor: '#EEEEEE',
+  bodyColor: '#EEEEEE',
+  textColor: '#1B1B1B',
 }
 
 const Sizes = {
-  maxWidth: `calc(100% - 4rem)`,
-  
+  title: '1.5rem',
+  bigText: '1rem',
   normalText: '.8rem',
   smallText: '.6rem',
-  bigText: '1rem'
 }
 
 const Fonts = {
-  primary: "Montserrat, sans-serif",
-  secondary: "Amatic SC",
+  fontsUrl: [
+    "@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');",
+    "@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');",
+  ],
+
+  primary: "Roboto, sans-serif",
+  secondary: "Open Sans, sans-serif",
 }
 
 const BreakPoints = {
-  mobile: '(max-width: 767px)',
-  tablet: '(min-width: 768px) and (max-width: 1023px)',
-  desktop: '(min-width: 1024px)'
+  mobile: window.matchMedia('(max-width: 767px)').matches,
+  tablet: window.matchMedia('(min-width: 768px) and (max-width: 1023px)').matches,
+  desktop: window.matchMedia('(min-width: 1024px)').matches
 }
 
 export { appRoot, Colors, Sizes, Fonts, BreakPoints }
