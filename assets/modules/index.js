@@ -806,7 +806,7 @@ export function Icon({ name, color, size, zIndex, opacity }) {
 
 
 // STYLE
-export function Style(params) {
+export function Style({ fonts, ...params }) {
 
   let rules = [Object.entries(params)]
 
@@ -814,59 +814,57 @@ export function Style(params) {
 
   let styleSheet = elementStyle.sheet
 
-  if (params) {
-    if (params.fonts) {
-      if (params.fonts.length > 0) {
-        params.fonts.forEach(font => {
-          styleSheet.insertRule(font)
-        })
-      }
-    } else {
-      rules.forEach(rule => {
-        if (rule.length > 1) {
+  if (fonts && fonts.length > 0) {
+    fonts.forEach(font => {
+      styleSheet.insertRule(font)
+    })
+  }
 
-          let j = 1
-          let selector = rule[0][1]
-          let propStr = ''
+  if(params) {
+    rules.forEach(rule => {
+      if (rule.length > 1) {
 
-          if (Array.isArray(rule[1][0])) {
-            rule = rule[1]
-            j = 0
-          }
+        let j = 1
+        let selector = rule[0][1]
+        let propStr = ''
 
-          rule.forEach((prop, index) => {
+        if (Array.isArray(rule[1][0])) {
+          rule = rule[1]
+          j = 0
+        }
 
-            if (prop[1]) {
-              let important = false
-              let newProp = prop[1]
+        rule.forEach((prop, index) => {
 
-              if (index != 0) {
+          if (prop[1]) {
+            let important = false
+            let newProp = prop[1]
 
-                prop[0] = prop[0].split(/(?=[A-Z])/).join("-").toLowerCase()
+            if (index != 0) {
 
-                let firstL = prop[1].charAt(0)
-                let lastL = prop[1].charAt(prop[1].length - 1)
+              prop[0] = prop[0].split(/(?=[A-Z])/).join("-").toLowerCase()
 
-                if (firstL === "{" && lastL === "}") {
-                  prop[1] = prop[1].split('')
-                  prop[1].shift()
-                  prop[1].pop()
-                  newProp = prop[1].join('')
-                  important = true
-                }
-              }
+              let firstL = prop[1].charAt(0)
+              let lastL = prop[1].charAt(prop[1].length - 1)
 
-              if (prop[0] != 'selector') {
-
-                propStr += prop[0] + ': ' + newProp + (important ? ' !important' : '') + ';\n'
+              if (firstL === "{" && lastL === "}") {
+                prop[1] = prop[1].split('')
+                prop[1].shift()
+                prop[1].pop()
+                newProp = prop[1].join('')
+                important = true
               }
             }
-          })
 
-          styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length)
-        }
-      })
-    }
+            if (prop[0] != 'selector') {
+
+              propStr += prop[0] + ': ' + newProp + (important ? ' !important' : '') + ';\n'
+            }
+          }
+        })
+
+        styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length)
+      }
+    })
   }
 }
 // STYLE
