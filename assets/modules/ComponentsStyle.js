@@ -41,15 +41,15 @@ export default function ComponentsStyle() {
       cursor: "pointer"
     }),
     Style({
-      selector: [ "button", "input", "textarea" ],
+      selector: [ "button", "select", "input", "textarea" ],
       fontFamily: Fonts?.primary,
       fontSize: Sizes?.normalText,
       height: "fit-content",
       padding: ".25rem .5rem",
       border: "none",
       outline: "none",
-      background: Colors?.textColor,
-      boxShadow: `0 0 .1rem ${Colors?.bodyColor}`,
+      background: Colors?.bodyColor,
+      boxShadow: `0 0 .1rem ${Colors?.textColor}`,
     }),
     Style({
       selector: [ "input", "textarea" ],

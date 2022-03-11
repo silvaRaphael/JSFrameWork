@@ -4,9 +4,9 @@ import ComponentsStyle from "./ComponentsStyle.js";
 // CONTAINERS
 export function View({ className, id, child, children, crossAxis, style, hover }) {
 
-  let type = 'div'
+  let elemType = 'div'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
   if (className && typeof (className) == 'string') element.className = className
 
@@ -27,7 +27,7 @@ export function View({ className, id, child, children, crossAxis, style, hover }
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object') {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -61,9 +61,9 @@ export function View({ className, id, child, children, crossAxis, style, hover }
 
 export function Container({ className, id, child, children, crossAxis, style, hover }) {
 
-  let type = 'div'
+  let elemType = 'div'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
   if (className && typeof (className) == 'string') element.className = className
 
@@ -84,7 +84,7 @@ export function Container({ className, id, child, children, crossAxis, style, ho
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object') {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -118,9 +118,9 @@ export function Container({ className, id, child, children, crossAxis, style, ho
 
 export function Grid({ className, id, child, children, crossAxis, style, hover, rows, columns, gap, rowGap, columnGap }) {
 
-  let type = 'div'
+  let elemType = 'div'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
   if (className && typeof (className) == 'string') element.className = className
 
@@ -144,7 +144,7 @@ export function Grid({ className, id, child, children, crossAxis, style, hover, 
     rowGap ||
     columnGap) {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -213,9 +213,9 @@ export function Grid({ className, id, child, children, crossAxis, style, hover, 
 
 export function Center({ className, id, child, children, style, hover }) {
 
-  let type = 'div'
+  let elemType = 'div'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
   if (className && typeof (className) == 'string') element.className = className
 
@@ -228,7 +228,7 @@ export function Center({ className, id, child, children, style, hover }) {
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object') {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -262,9 +262,9 @@ export function Center({ className, id, child, children, style, hover }) {
 
 export function Row({ className, id, child, children, crossAxis, style, hover }) {
 
-  let type = 'div'
+  let elemType = 'div'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
   if (className && typeof (className) == 'string') element.className = className
 
@@ -285,7 +285,7 @@ export function Row({ className, id, child, children, crossAxis, style, hover })
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object') {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -319,9 +319,9 @@ export function Row({ className, id, child, children, crossAxis, style, hover })
 
 export function Column({ className, id, child, children, crossAxis, style, hover }) {
 
-  let type = 'div'
+  let elemType = 'div'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
   if (className && typeof (className) == 'string') element.className = className
 
@@ -342,7 +342,7 @@ export function Column({ className, id, child, children, crossAxis, style, hover
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object') {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -394,7 +394,7 @@ export function Text({ type, className, id, child, style, hover }) {
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object') {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -454,7 +454,7 @@ export function TextInput({ type, className, id, child, children, crossAxis, sty
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object') {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -510,9 +510,9 @@ export function GestureDetector({ child, ...events }) {
 
 export function Button({ className, id, child, style, hover }) {
 
-  let type = 'button'
+  let elemType = 'button'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
   if (className && typeof (className) == 'string') element.className = className
 
@@ -523,7 +523,7 @@ export function Button({ className, id, child, style, hover }) {
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object') {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -557,9 +557,9 @@ export function Button({ className, id, child, style, hover }) {
 
 export function Link({ className, id, to, target, child, children, preventDefault, style, hover }) {
 
-  let type = 'a'
+  let elemType = 'a'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
   if (className && typeof (className) == 'string') element.className = className
 
@@ -582,7 +582,7 @@ export function Link({ className, id, to, target, child, children, preventDefaul
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object') {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -612,33 +612,6 @@ export function Link({ className, id, to, target, child, children, preventDefaul
   }
 
   return element
-}
-
-export function List({ title, children, align, size, titleStyle, style }) {
-
-  return (
-    Column({
-      style: {
-        width: size ? size : '100%',
-        alignItems: align ? align : 'flex-start',
-        ...style
-      },
-      children: [
-        title ? Text({
-          type: 'span',
-          style: titleStyle ? titleStyle : '',
-          child: title
-        }) : '',
-        Column({
-          style: {
-            alignItems: align ? align : 'flex-start',
-            margin: '.5rem 0 1rem'
-          },
-          children: children ? children : ''
-        })
-      ]
-    })
-  )
 }
 
 export function IconText({ icon, iconStyle, text, textStyle, align, spacing, style, hover }) {
@@ -677,17 +650,235 @@ export function IconText({ icon, iconStyle, text, textStyle, align, spacing, sty
     })
   )
 }
+
+export function List({ className, id, children, crossAxis, style, hover }) {
+
+  let elemType = 'ul'
+  
+  let element = document.createElement(elemType)
+
+  if (className && typeof (className) == 'string') element.className = className
+
+  if (id && typeof (id) == 'string') element.id = id
+
+  if (children) {
+    children.forEach(item => {
+      render(item, element)
+    });
+  }
+
+  if (crossAxis) element.dataset.column = ''
+
+  if (style && typeof style == 'object' ||
+    hover && typeof hover == 'object') {
+
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
+
+    element.classList.add(identifier)
+
+    if (style && typeof style == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(style)
+
+      newStyle.unshift(["selector", `.${identifier}`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+
+    if (hover && typeof hover == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(hover)
+
+      newStyle.unshift(["selector", `.${identifier}:hover`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+  }
+  
+  return element
+}
+
+export function ListItem({ className, id, child, children, style, hover }) {
+
+  let elemType = 'li'
+  
+  let element = document.createElement(elemType)
+
+  if (className && typeof (className) == 'string') element.className = className
+
+  if (id && typeof (id) == 'string') element.id = id
+
+  if (child) {
+    render(child, element)
+  } else if (children) {
+    children.forEach(item => {
+      render(item, element)
+    });
+  }
+
+  if (style && typeof style == 'object' ||
+    hover && typeof hover == 'object') {
+
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
+
+    element.classList.add(identifier)
+
+    if (style && typeof style == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(style)
+
+      newStyle.unshift(["selector", `.${identifier}`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+
+    if (hover && typeof hover == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(hover)
+
+      newStyle.unshift(["selector", `.${identifier}:hover`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+  }
+  
+  return element
+}
+
+export function Select({ className, id, name, selected, disabled, required, children, style, hover }) {
+
+  let elemType = 'select'
+  
+  let element = document.createElement(elemType)
+
+  if (className && typeof (className) == 'string') element.className = className
+
+  if (id && typeof (id) == 'string') element.id = id
+
+  if (selected) element.selected = selected
+
+  if (disabled) element.disabled = disabled
+
+  if (required) element.required = className
+
+  if (children) {
+    children.forEach(item => {
+      render(item, element)
+    });
+  }
+
+  if (style && typeof style == 'object' ||
+    hover && typeof hover == 'object') {
+
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
+
+    element.classList.add(identifier)
+
+    if (style && typeof style == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(style)
+
+      newStyle.unshift(["selector", `.${identifier}`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+
+    if (hover && typeof hover == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(hover)
+
+      newStyle.unshift(["selector", `.${identifier}:hover`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+  }
+  
+  return element
+}
+
+export function Option({ className, id, value, child, children, style, hover }) {
+
+  let elemType = 'option'
+  
+  let element = document.createElement(elemType)
+
+  if (className && typeof (className) == 'string') element.className = className
+
+  if (id && typeof (id) == 'string') element.id = id
+
+  if (value) element.value = value
+
+  if (child) {
+    render(child, element)
+  } else if (children) {
+    children.forEach(item => {
+      render(item, element)
+    });
+  }
+
+  if (style && typeof style == 'object' ||
+    hover && typeof hover == 'object') {
+
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
+
+    element.classList.add(identifier)
+
+    if (style && typeof style == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(style)
+
+      newStyle.unshift(["selector", `.${identifier}`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+
+    if (hover && typeof hover == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(hover)
+
+      newStyle.unshift(["selector", `.${identifier}:hover`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+  }
+  
+  return element
+}
 // INPUT / BUTTON / LINK / CLICK / LIST / ICONTEXT
 
 
 // SEPARATOR
 export function Line({ width, separator, height, color }) {
 
-  let type = 'hr'
+  let elemType = 'hr'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
-  let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+  let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
   element.classList.add(identifier)
 
@@ -708,9 +899,9 @@ export function Line({ width, separator, height, color }) {
 // IMAGE / ICON
 export function Image({ className, id, alt, source, sizeMode, size, style, hover }) {
 
-  let type = 'img'
+  let elemType = 'img'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
   if (className && typeof (className) == 'string') element.className = className
 
@@ -738,7 +929,7 @@ export function Image({ className, id, alt, source, sizeMode, size, style, hover
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object') {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 
@@ -772,9 +963,9 @@ export function Image({ className, id, alt, source, sizeMode, size, style, hover
 
 export function Icon({ name, color, size, zIndex, opacity }) {
 
-  let type = 'i'
+  let elemType = 'i'
 
-  let element = document.createElement(type)
+  let element = document.createElement(elemType)
 
   element.className = name.split(' ').length == 1 ? 'fas ' : ''
 
@@ -782,7 +973,7 @@ export function Icon({ name, color, size, zIndex, opacity }) {
 
   if (color && typeof color == 'string' || size || zIndex || opacity) {
 
-    let identifier = `${type}${Math.floor(Math.random() * 9999999) + 9999}`
+    let identifier = `${elemType}${Math.floor(Math.random() * 9999999) + 9999}`
 
     element.classList.add(identifier)
 

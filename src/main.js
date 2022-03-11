@@ -22,7 +22,7 @@ function Home() {
         }),
         Text({
           child: 'Comece seu projeto em src/main.js'
-        })
+        }),
       ]
     })
   })
