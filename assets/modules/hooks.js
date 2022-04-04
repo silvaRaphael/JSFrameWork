@@ -1,33 +1,69 @@
 import { appRoot } from '../../config/config.js';
-import { default as App } from '../../src/main.js';
 import { Router } from "./Router.js";
+
+import { default as App } from '../../src/main.js';
+import * as all from '../../src/main.js';
 
 const root = document.querySelector(appRoot)
 
-const renders = []
-let renderIndex = 0
+// const renders = []
+// let renderIndex = 0
 
 function render(element, container) {
 
-  if(!container) container = root
+  if (!container) container = root
 
-  if(container == root) {
+  if (container == root) {
     container.children[0] && container.children[0].remove()
   }
 
-  if(typeof element == "string" || typeof element == "number") {
+  if (typeof element == "string" || typeof element == "number") {
 
     container.append(element)
   } else {
-    
+
     container.appendChild(element)
   }
-
-  renders[renderIndex] = element
-  renderIndex++
+  
+  // renders[renderIndex] = element
+  // renderIndex++
 }
 
-const states = []
+let osArray = [];
+let osIndex = 0;
+let osComponent = "";
+
+function State(initialState, { name }) {
+  let index = osIndex
+  osArray[index] = osArray[index] || {id: index, component: name, value: initialState}
+
+  const setState = (newState) => {
+    let component = osArray[index].component
+    osArray = osArray.map(p =>
+      p.id === index ? { ...p, value: newState } : p
+    );
+    replaceChild(component, index, component)
+  }
+
+  osIndex++
+  return [osArray[index].value, setState]
+}
+
+function replaceChild(element, index, component) {
+  let indexItemAppears = []
+  osArray.forEach((element, i) => { if(element.component == component) indexItemAppears.push(i) })
+
+  osIndex = indexItemAppears[0]
+  osComponent = component
+
+  const oldComponent = document.querySelector("[data-statefull='"+element+"']")
+  oldComponent.parentNode.replaceChild(all[component](), oldComponent)
+}
+
+export { render, State }
+
+
+/* const states = []
 let stateIndex = 0
 
 function reRender() {
@@ -38,6 +74,7 @@ function reRender() {
 }
 
 function useState(initialState) {
+
   let index = stateIndex
 
   states[index] = states[index] || initialState
@@ -48,10 +85,10 @@ function useState(initialState) {
     reRender()
   }
   stateIndex++
-  return [ states[index], setState ]
-}
+  return [states[index], setState]
+} */
 
-const effects = []
+/* const effects = []
 let effectIndex = 0
 let executions = 1
 
@@ -67,12 +104,10 @@ function useEffect(toExec, deps) {
     "function": toExec
   }
 
-  if(effects[index].dependencies.length == "0") {
+  if (effects[index].dependencies.length == "0") {
     effects[index].executions == 1 && effects[index].function()
   }
 
   executions++
   effectIndex++
-}
-
-export { render, useState, useEffect }
+} */

@@ -56,7 +56,7 @@ export default function ComponentsStyle() {
       width: '100%'
     }),
     Style({
-      selector: [ "[data-row]", "[data-column]", "[data-view]", "[data-center]", "[data-container]" ],
+      selector: [ "[data-row]", "[data-column]", "[data-view]", "[data-center]", "[data-expanded]" ],
       display: "flex",
     }),
     Style({
@@ -72,6 +72,14 @@ export default function ComponentsStyle() {
       selector: [ "[data-column]" ],
       flexDirection: "column",
       alignItems: "center",
+    }),
+    Style({
+      selector: [ "[data-expanded]" ],
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "100vh",
+      minWidth: "100vw"
     }),
     Style({
       selector: [ "[data-view]" ],
