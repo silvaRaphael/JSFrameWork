@@ -59,7 +59,7 @@ export default function AppRoutes() {
     Router({
       routes: [
         {
-          component: App(),
+          component: Home(),
           path: '/'
         },
         {
