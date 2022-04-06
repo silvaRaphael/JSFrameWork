@@ -1048,21 +1048,39 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
     }, timing);
   }
 
-  return View({
-    id: identifier,
-    style: {
-      width: slideWidth + slideTypeMetricWidth,
-      height: slideHeight + slideTypeMetricHeight,
-      overflow: "hidden",
-      justifyContent: "start",
-      position: "relative",
-      background: background || "white",
-    },
-    child: Row({
+  return (
+    Row({
       style: {
-        transition: transition / 1000 + "s"
+        position: "relative",
       },
       children: [
+        View({
+          id: identifier,
+          style: {
+            width: slideWidth + slideTypeMetricWidth,
+            height: slideHeight + slideTypeMetricHeight,
+            overflow: "hidden",
+            justifyContent: "start",
+            background: background || "white",
+          },
+          child: Row({
+            style: {
+              transition: transition / 1000 + "s"
+            },
+            children: [
+              ...items.map(item => {
+                return Center({
+                  style: {
+                    width: slideWidth + slideTypeMetricWidth,
+                    height: slideHeight + slideTypeMetricHeight,
+                    overflow: "hidden",
+                  },
+                  child: item
+                })
+              })
+            ]
+          })
+        }),
         showArrows ? GestureDetector({
           onclick: () => next(),
           child: Center({
@@ -1101,19 +1119,9 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
             })
           })
         }) : "",
-        ...items.map(item => {
-          return Center({
-            style: {
-              width: slideWidth + slideTypeMetricWidth,
-              height: slideHeight + slideTypeMetricHeight,
-              overflow: "hidden",
-            },
-            child: item
-          })
-        })
       ]
     })
-  })
+  )
 }
 
 export function Image({ className, id, alt, source, sizeMode, size, style, hover, animated }) {
