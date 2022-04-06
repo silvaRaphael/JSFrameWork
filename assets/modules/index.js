@@ -1077,6 +1077,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
             child: Icon({
               name: "fas fa-chevron-right",
               size: "24px",
+              color: nextStyle?.color
             })
           })
         }) : "",
@@ -1094,6 +1095,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
             child: Icon({
               name: "fas fa-chevron-left",
               size: "24px",
+              color: prevStyle?.color
             })
           })
         }) : "",
