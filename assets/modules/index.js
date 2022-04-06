@@ -1,6 +1,8 @@
 import { render } from "./hooks.js";
 import ComponentsStyle from "./ComponentsStyle.js";
 
+window.getElement = el => document.querySelector(el)
+
 const ItemsArray = [];
 
 // CONTAINERS
@@ -947,16 +949,20 @@ export function Line({ width, separator, height, color, animated }) {
 
 
 // SLIDER / IMAGE / ICON
-export function Slider({ width, height, border, timing, transition, items, auto }) {
+export function Slider({ width, height, border, background, prevStyle, nextStyle, timing, transition, items, autoplay, showArrows }) {
 
-  auto = auto == undefined ? true : auto
-
+  autoplay = autoplay == undefined ? true : autoplay
+  showArrows = showArrows == undefined ? true : showArrows
+  timing = timing == undefined ? 2000 : timing
+  transition = transition == undefined ? 500 : transition
+  
   ItemsArray.push(ItemsArray.length)
   const identifier = `slider${ItemsArray.length}`
   
-  const slideWidthFull = width.toString() || "600";
-  const slideHeightFull = height.toString() || "400";
-
+  const slideWidthFull = width?.toString() || "600";
+  const slideHeightFull = height?.toString() || "400";
+  
+  let isPaused = false;
   let slideWidth = 0;
   let slideHeight = 0;
   let slideTypeMetricWidth = "px";
@@ -989,22 +995,57 @@ export function Slider({ width, height, border, timing, transition, items, auto 
     }
   }
 
-  if(auto) {
+  if(autoplay) {
     const sliderLoop = setInterval(() => {
       const slider = document.querySelector(`#${identifier}`)
       if(!slider) {
         clearInterval(sliderLoop)
         return
       }
-      if(slideItemSelected != items.length) {
-        slidePosition = slideItemSelected * slideWidth;
-        slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
-        slideItemSelected++;
-      } else {
-        slider.firstChild.style.marginLeft = "0px"
-        slideItemSelected = 1;
+      if(!isPaused) {
+        if(slideItemSelected != items.length) {
+          slidePosition = slideItemSelected * slideWidth;
+          slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
+          slideItemSelected++;
+        } else {
+          slider.firstChild.style.marginLeft = "0px"
+          slideItemSelected = 1;
+        }
       }
     }, timing * slideItemSelected)
+  }
+
+  function next() {
+    const slider = document.querySelector(`#${identifier}`)
+    if(slideItemSelected != items.length) {
+      slidePosition = slideItemSelected * slideWidth;
+      slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
+      slideItemSelected++;
+    } else {
+      slider.firstChild.style.marginLeft = "0px"
+      slideItemSelected = 1;
+    }
+    isPaused = true
+    setTimeout(() => {
+      isPaused = false
+    }, timing);
+  }
+
+  function prev() {
+    const slider = document.querySelector(`#${identifier}`)
+    if(slideItemSelected != 1) {
+      slideItemSelected--;
+      slidePosition = (slideItemSelected - 1) * slideWidth;
+      slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
+    } else {
+      slideItemSelected = items.length;
+      slidePosition = (slideItemSelected - 1) * slideWidth;
+      slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
+    }
+    isPaused = true
+    setTimeout(() => {
+      isPaused = false
+    }, timing);
   }
 
   return View({
@@ -1014,18 +1055,54 @@ export function Slider({ width, height, border, timing, transition, items, auto 
       height: slideHeight + slideTypeMetricHeight,
       overflow: "hidden",
       justifyContent: "start",
+      position: "relative",
+      background: background || "white",
     },
     child: Row({
       style: {
         transition: transition / 1000 + "s"
       },
       children: [
+        showArrows ? GestureDetector({
+          onclick: () => next(),
+          child: Center({
+            style: {
+              position: "absolute",
+              top: "0",
+              right: "0",
+              height: "100%",
+              padding: "10px",
+              ...nextStyle,
+            },
+            child: Icon({
+              name: "fas fa-chevron-right",
+              size: "24px",
+            })
+          })
+        }) : "",
+        showArrows ? GestureDetector({
+          onclick: () => prev(),
+          child: Center({
+            style: {
+              position: "absolute",
+              top: "0",
+              left: "0",
+              height: "100%",
+              padding: "10px",
+              ...prevStyle,
+            },
+            child: Icon({
+              name: "fas fa-chevron-left",
+              size: "24px",
+            })
+          })
+        }) : "",
         ...items.map(item => {
           return Center({
             style: {
               width: slideWidth + slideTypeMetricWidth,
               height: slideHeight + slideTypeMetricHeight,
-              overflow: "hidden"
+              overflow: "hidden",
             },
             child: item
           })
