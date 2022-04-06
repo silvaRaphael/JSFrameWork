@@ -1067,6 +1067,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
           onclick: () => next(),
           child: Center({
             style: {
+              zIndex: "2",
               position: "absolute",
               top: "0",
               right: "0",
@@ -1085,6 +1086,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
           onclick: () => prev(),
           child: Center({
             style: {
+              zIndex: "2",
               position: "absolute",
               top: "0",
               left: "0",
