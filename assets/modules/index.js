@@ -949,12 +949,15 @@ export function Line({ width, separator, height, color, animated }) {
 
 
 // SLIDER / IMAGE / ICON
-export function Slider({ width, height, border, background, prevStyle, nextStyle, timing, transition, items, autoplay, showArrows }) {
+export function Slider({ width, height, border, background, prevStyle, nextStyle, itemsToShow, timing, transition, items, autoplay, showArrows }) {
 
   autoplay = autoplay == undefined ? true : autoplay
   showArrows = showArrows == undefined ? true : showArrows
   timing = timing == undefined ? 2000 : timing
   transition = transition == undefined ? 500 : transition
+  transition = timing <= 500 && transition >= 500 ? timing / 2 : transition
+  itemsToShow = itemsToShow == undefined ? 1 : itemsToShow
+  itemsToShow = itemsToShow > items.length ? items.length : itemsToShow
   
   ItemsArray.push(ItemsArray.length)
   const identifier = `slider${ItemsArray.length}`
@@ -1003,8 +1006,8 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
         return
       }
       if(!isPaused) {
-        if(slideItemSelected != items.length) {
-          slidePosition = slideItemSelected * slideWidth;
+        if(slideItemSelected != items.length + 1 - itemsToShow) {
+          slidePosition = slideItemSelected * slideWidth / itemsToShow;
           slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
           slideItemSelected++;
         } else {
@@ -1017,8 +1020,8 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
 
   function next() {
     const slider = document.querySelector(`#${identifier}`)
-    if(slideItemSelected != items.length) {
-      slidePosition = slideItemSelected * slideWidth;
+    if(slideItemSelected != items.length + 1 - itemsToShow) {
+      slidePosition = slideItemSelected * slideWidth / itemsToShow;
       slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
       slideItemSelected++;
     } else {
@@ -1035,11 +1038,11 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
     const slider = document.querySelector(`#${identifier}`)
     if(slideItemSelected != 1) {
       slideItemSelected--;
-      slidePosition = (slideItemSelected - 1) * slideWidth;
+      slidePosition = (slideItemSelected - 1) * slideWidth / itemsToShow;
       slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
     } else {
-      slideItemSelected = items.length;
-      slidePosition = (slideItemSelected - 1) * slideWidth;
+      slideItemSelected = items.length + 1 - itemsToShow;
+      slidePosition = (slideItemSelected - 1) * slideWidth / itemsToShow;
       slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
     }
     isPaused = true
@@ -1071,8 +1074,8 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
               ...items.map(item => {
                 return Center({
                   style: {
-                    width: slideWidth + slideTypeMetricWidth,
-                    height: slideHeight + slideTypeMetricHeight,
+                    width: slideWidth / itemsToShow + slideTypeMetricWidth,
+                    height: slideHeight / itemsToShow + slideTypeMetricHeight,
                     overflow: "hidden",
                   },
                   child: item
