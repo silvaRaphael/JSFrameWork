@@ -88,6 +88,8 @@ const Router = ({ routes }) => {
   return route.length > 0 && route[0].component
 }
 
-window.onpopstate = e => changeRoute(e, location.pathname)
+if(routesArr.length > 0) {
+  window.onpopstate = e => changeRoute(e, location.pathname)
+}
 
 export { Router, RouterLink }

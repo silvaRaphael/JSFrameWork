@@ -10,6 +10,8 @@ const Sizes = {
   bigText: '1rem',
   normalText: '.8rem',
   smallText: '.6rem',
+
+  pageWidth: "1024px",
 }
 
 const Fonts = {

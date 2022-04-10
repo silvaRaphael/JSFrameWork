@@ -921,8 +921,21 @@ export function IconText({ icon, iconStyle, text, textStyle, align, spacing, sty
 
 
 // SEPARATOR
-export function Line({ width, separator, height, color, animated }) {
+export function Separator({ width, height }) {
+  
+  ItemsArray.push(ItemsArray.length)
+  
+  let elemType = 'span'
 
+  let element = document.createElement(elemType)
+
+  if(width) element.style.width = width
+  if(height) element.style.height = width
+
+  return element
+}
+
+export function Line({ width, separator, height, color, animated }) {
   
   ItemsArray.push(ItemsArray.length)
   
