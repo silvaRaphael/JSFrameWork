@@ -1,13 +1,10 @@
 import { appRoot } from '../../config/config.js';
 import { Router } from "./Router.js";
 
-import { default as App } from '../../src/main.js';
-import * as all from '../../src/main.js';
+import * as allFromMain from '../../src/main.js';
+Object.entries(allFromMain).forEach(([name, exported]) => window[name] = exported);
 
 const root = document.querySelector(appRoot)
-
-// const renders = []
-// let renderIndex = 0
 
 function render(element, container) {
 
@@ -24,9 +21,6 @@ function render(element, container) {
 
     container.appendChild(element)
   }
-  
-  // renders[renderIndex] = element
-  // renderIndex++
 }
 
 let osArray = [];
@@ -57,57 +51,7 @@ function replaceChild(element, index, component) {
   osComponent = component
 
   const oldComponent = document.querySelector("[data-statefull='"+element+"']")
-  oldComponent.parentNode.replaceChild(all[component](), oldComponent)
+  oldComponent.parentNode.replaceChild(eval(component+'()'), oldComponent)
 }
 
 export { render, State }
-
-
-/* const states = []
-let stateIndex = 0
-
-function reRender() {
-  stateIndex = 0
-
-  root.firstChild.remove()
-  render(App())
-}
-
-function useState(initialState) {
-
-  let index = stateIndex
-
-  states[index] = states[index] || initialState
-
-  const setState = newState => {
-
-    states[index] = newState
-    reRender()
-  }
-  stateIndex++
-  return [states[index], setState]
-} */
-
-/* const effects = []
-let effectIndex = 0
-let executions = 1
-
-function useEffect(toExec, deps) {
-
-  let dependencies = !deps ? [] : deps
-
-  let index = effectIndex
-
-  effects[index] = {
-    "executions": executions,
-    "dependencies": dependencies,
-    "function": toExec
-  }
-
-  if (effects[index].dependencies.length == "0") {
-    effects[index].executions == 1 && effects[index].function()
-  }
-
-  executions++
-  effectIndex++
-} */

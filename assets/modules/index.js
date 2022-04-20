@@ -615,14 +615,16 @@ export function Text({ type, className, id, child, style, hover, animated }) {
 }
 // TEXT
 
-
 // INPUT / BUTTON / LINK / CLICK / LIST / ICONTEXT
 export function Statefull({ key, child }) {
+
+  window[key.name] = key
 
   if(key) child.dataset.statefull = key.name
   
   return child
 }
+
 export function TextInput({ type, className, id, child, children, crossAxis, style, hover, rows, name, value, placeHolder, animated }) {
 
   
