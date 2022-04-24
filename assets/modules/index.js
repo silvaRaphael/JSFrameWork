@@ -625,9 +625,95 @@ export function Statefull({ key, child }) {
   return child
 }
 
-export function TextInput({ type, className, id, child, children, crossAxis, style, hover, rows, name, value, placeHolder, animated }) {
-
+export function Select({ className, id, children, style, hover, name, value, animated }) {
   
+  ItemsArray.push(ItemsArray.length)
+  
+  let elemType = 'select'
+
+  let element = document.createElement(elemType)
+
+  if (className && typeof (className) == 'string') element.className = className
+
+  if (id && typeof (id) == 'string') element.id = id
+
+  if (name && typeof (name) == 'string') element.name = name
+
+  if (value && typeof (value) == 'string') element.value = value
+
+  if (children) {
+    children.forEach(item => {
+      render(item, element)
+    })
+  }
+
+  if (style && typeof style == 'object' ||
+    hover && typeof hover == 'object' ||
+    animated && typeof animated == 'object') {
+
+    let identifier = `${elemType}${ItemsArray.length}`
+
+    element.classList.add(identifier)
+
+    if (style && typeof style == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(style)
+
+      newStyle.unshift(["selector", `.${identifier}`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+
+    if (hover && typeof hover == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(hover)
+
+      newStyle.unshift(["selector", `.${identifier}:hover`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+
+    if (animated && typeof animated == 'object') {
+
+      let animatedParams = {}
+      let animation = Object.entries(animated)
+
+      animation.unshift(["selector", `${identifier}`])
+
+      animation.map(item => animatedParams[item[0]] = item[1])
+
+      Animated(animatedParams)
+    }
+  }
+
+  return element
+}
+
+export function Option({ child, selected, style, value }) {
+  
+  ItemsArray.push(ItemsArray.length)
+  
+  let elemType = 'option'
+
+  let element = document.createElement(elemType)
+
+  if (selected) element.selected = selected
+
+  if (value && typeof (value) == 'string') element.value = value
+
+  if (child) render(child, element)
+
+  return element
+}
+
+export function TextInput({ type, className, id, child, crossAxis, style, hover, rows, name, value, placeHolder, animated }) {
+
   ItemsArray.push(ItemsArray.length)
   
   let elemType = 'input'

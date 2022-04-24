@@ -54,4 +54,10 @@ function replaceChild(element, index, component) {
   oldComponent.parentNode.replaceChild(eval(component+'()'), oldComponent)
 }
 
-export { render, State }
+let depArray = [];
+function Effect(callback, dependencies) {
+  depArray.push(dependencies)
+  if(JSON.stringify(depArray[depArray.length-2]) !== JSON.stringify(depArray[depArray.length-1])) callback()
+}
+
+export { render, State, Effect }
