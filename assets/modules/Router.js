@@ -76,16 +76,16 @@ const Router = ({ routes }) => {
 
     let pagePath = window.location.pathname
 
-    let renderComponent = path == pagePath ? component : path == '/error' && component
+    let renderComponent = path == pagePath ? component : path == '/error' ? component : ""
     
     return renderComponent
   })
 
   let path = route.length > 0 ? route[0].path : '/error'
-
-  routesArr[0] = routes
   
-  return route.length > 0 && route[0].component
+  routesArr[0] = routes
+
+  return route.length > 0 && route[0].component()
 }
 
 if(routesArr.length > 0) {
