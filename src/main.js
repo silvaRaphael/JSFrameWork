@@ -59,11 +59,11 @@ export default function AppRoutes() {
     Router({
       routes: [
         {
-          component: Home(),
+          component: Home,
           path: '/'
         },
         {
-          component: Error(),
+          component: Error,
           path: '/error'
         },
       ]
