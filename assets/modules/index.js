@@ -712,7 +712,7 @@ export function Option({ child, selected, style, value }) {
   return element
 }
 
-export function TextInput({ type, className, id, child, crossAxis, style, hover, rows, name, value, placeHolder, animated }) {
+export function TextInput({ type, className, id, style, hover, rows, name, value, placeholder, checked, animated }) {
 
   ItemsArray.push(ItemsArray.length)
   
@@ -727,6 +727,8 @@ export function TextInput({ type, className, id, child, crossAxis, style, hover,
   if (id && typeof (id) == 'string') element.id = id
 
   if (type == 'textarea') if (rows) element.rows = rows
+  
+  if(type == 'checkbox') element.checked = checked
 
   if (type && typeof type == 'string' && type.toLowerCase() !== 'textarea') element.type = type
 
@@ -734,7 +736,7 @@ export function TextInput({ type, className, id, child, crossAxis, style, hover,
 
   if (value && typeof (value) == 'string') element.value = value
 
-  if (placeHolder && typeof (placeHolder) == 'string') element.placeholder = placeHolder
+  if (placeholder && typeof (placeholder) == 'string') element.placeholder = placeholder
 
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object' ||
