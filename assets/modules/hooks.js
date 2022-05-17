@@ -56,8 +56,8 @@ function replaceChild(element, index, component) {
 
 let depArray = [];
 function Effect(callback, dependencies, component) {
-  depArray.push(JSON.stringify(component.name+"/"+dependencies))
-  if(depArray.length == 0 || JSON.stringify(depArray[depArray.length-2]) != JSON.stringify(depArray[depArray.length-1])) {
+  depArray.push(JSON.stringify(component.name + "/" + JSON.stringify(dependencies)))
+  if (depArray.length == 0 || JSON.stringify(depArray[depArray.length - 2]) != JSON.stringify(depArray[depArray.length - 1])) {
     callback()
   }
 }
