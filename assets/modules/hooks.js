@@ -21,15 +21,15 @@ function render(element, container) {
 
     container.appendChild(element)
   }
+
 }
 
-let osArray = [];
-let osIndex = 0;
-let osComponent = "";
-
+window.osArray = [];
+window.osIndex = 0;
+window.osComponent = "";
 function State(initialState, { name }) {
   let index = osIndex
-  osArray[index] = osArray[index] || {id: index, component: name, value: initialState}
+  osArray[index] = osArray[index] || { id: index, component: name, value: initialState }
 
   const setState = (newState) => {
     let component = osArray[index].component
@@ -45,16 +45,16 @@ function State(initialState, { name }) {
 
 function replaceChild(element, index, component) {
   let indexItemAppears = []
-  osArray.forEach((element, i) => { if(element.component == component) indexItemAppears.push(i) })
+  osArray.forEach((element, i) => { if (element.component == component) indexItemAppears.push(i) })
 
   osIndex = indexItemAppears[0]
   osComponent = component
 
-  const oldComponent = document.querySelector("[data-statefull='"+element+"']")
-  oldComponent.parentNode.replaceChild(eval(component+'()'), oldComponent)
+  const oldComponent = document.querySelector("[data-statefull='" + element + "']")
+  oldComponent.parentNode.replaceChild(eval(component + '()'), oldComponent)
 }
 
-let depArray = [];
+window.depArray = [];
 function Effect(callback, dependencies, component) {
   depArray.push(JSON.stringify(component.name + "/" + JSON.stringify(dependencies)))
   if (depArray.length == 0 || JSON.stringify(depArray[depArray.length - 2]) != JSON.stringify(depArray[depArray.length - 1])) {
