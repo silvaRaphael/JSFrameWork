@@ -13,7 +13,7 @@ export default function ComponentsStyle() {
       zIndex: '99999'
     }),
     Style({
-      selector: [ "*" ],
+      selector: ["*"],
       scrollBehavior: "smooth",
       margin: "0",
       padding: "0",
@@ -26,22 +26,22 @@ export default function ComponentsStyle() {
       backgroundColor: Colors?.bodyColor
     }),
     Style({
-      selector: [ "body > div:first-child" ],
+      selector: ["body > div:first-child"],
       minHeight: "100vh",
       minWidth: "100%",
     }),
     Style({
-      selector: [ "a", "p", "span" ],
+      selector: ["a", "p", "span"],
       color: Colors?.textColor,
       fontFamily: Fonts?.primary,
       textDecoration: "none"
     }),
     Style({
-      selector: [ "[data-pointer]", "a" ],
+      selector: ["[data-pointer]", "a"],
       cursor: "pointer"
     }),
     Style({
-      selector: [ "button", "select", "input", "textarea" ],
+      selector: ["button", "select", "input", "textarea"],
       fontFamily: Fonts?.primary,
       fontSize: Sizes?.normalText,
       height: "fit-content",
@@ -52,45 +52,47 @@ export default function ComponentsStyle() {
       boxShadow: `0 0 .1rem ${Colors?.textColor}`,
     }),
     Style({
-      selector: [ "input", "textarea" ],
+      selector: ["input", "textarea"],
       width: '100%'
     }),
     Style({
-      selector: [ "[data-row]", "[data-column]", "[data-view]", "[data-center]", "[data-expanded]" ],
+      selector: ["[data-row]", "[data-column]", "[data-view]", "[data-center]", "[data-expanded]"],
       display: "flex",
     }),
     Style({
-      selector: [ "[data-grid]" ],
+      selector: ["[data-grid]"],
       display: "grid",
     }),
     Style({
-      selector: [ "[data-row]" ],
+      selector: ["[data-row]"],
       flexDirection: "row",
       justifyContent: "center",
     }),
     Style({
-      selector: [ "[data-column]" ],
+      selector: ["[data-column]"],
       flexDirection: "column",
       alignItems: "center",
     }),
     Style({
-      selector: [ "[data-expanded]" ],
+      selector: ["[data-expanded]"],
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      minHeight: "100vh",
-      minWidth: "100vw"
+      flex: "1",
+      width: "100%"
     }),
     Style({
-      selector: [ "[data-view]" ],
+      selector: ["[data-view]"],
       flexDirection: "row",
       justifyContent: "center",
       width: "100%"
     }),
     Style({
-      selector: [ "[data-center]" ],
+      selector: ["[data-center]"],
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      flex: "1",
+      width: "100%"
     })
   )
 }
