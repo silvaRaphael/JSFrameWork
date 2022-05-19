@@ -8,9 +8,9 @@ const ItemsArray = [];
 // CONTAINERS
 export function View({ className, id, child, children, crossAxis, style, hover, animated }) {
 
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'div'
 
   let element = document.createElement(elemType)
@@ -81,9 +81,9 @@ export function View({ className, id, child, children, crossAxis, style, hover, 
 
 export function Container({ className, id, child, children, crossAxis, style, hover, animated }) {
 
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'div'
 
   let element = document.createElement(elemType)
@@ -154,9 +154,9 @@ export function Container({ className, id, child, children, crossAxis, style, ho
 
 export function Grid({ className, id, child, children, crossAxis, style, hover, rows, columns, gap, rowGap, columnGap, animated }) {
 
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'div'
 
   let element = document.createElement(elemType)
@@ -265,9 +265,9 @@ export function Grid({ className, id, child, children, crossAxis, style, hover, 
 
 export function Center({ className, id, child, children, style, hover, animated }) {
 
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'div'
 
   let element = document.createElement(elemType)
@@ -330,9 +330,9 @@ export function Center({ className, id, child, children, style, hover, animated 
 
 export function Row({ className, id, child, children, crossAxis, style, hover, animated }) {
 
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'div'
 
   let element = document.createElement(elemType)
@@ -403,9 +403,9 @@ export function Row({ className, id, child, children, crossAxis, style, hover, a
 
 export function Column({ className, id, child, children, crossAxis, style, hover, animated }) {
 
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'div'
 
   let element = document.createElement(elemType)
@@ -476,9 +476,9 @@ export function Column({ className, id, child, children, crossAxis, style, hover
 
 export function Expanded({ className, id, child, children, crossAxis, style, hover, animated }) {
 
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'div'
 
   let element = document.createElement(elemType)
@@ -551,9 +551,9 @@ export function Expanded({ className, id, child, children, crossAxis, style, hov
 
 // TEXT
 export function Text({ type, className, id, child, style, hover, animated }) {
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'p'
 
   if (type && typeof (type) == 'string') elemType = type
@@ -564,7 +564,7 @@ export function Text({ type, className, id, child, style, hover, animated }) {
 
   if (id && typeof (id) == 'string') element.id = id
 
-  if(child) element.innerHTML = child
+  if (child) element.innerHTML = child
 
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object' ||
@@ -620,15 +620,15 @@ export function Statefull({ key, child }) {
 
   window[key.name] = key
 
-  if(key) child.dataset.statefull = key.name
-  
+  if (key) child.dataset.statefull = key.name
+
   return child
 }
 
 export function Select({ className, id, children, style, hover, name, value, animated }) {
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'select'
 
   let element = document.createElement(elemType)
@@ -696,9 +696,9 @@ export function Select({ className, id, children, style, hover, name, value, ani
 }
 
 export function Option({ child, selected, style, value }) {
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'option'
 
   let element = document.createElement(elemType)
@@ -715,7 +715,7 @@ export function Option({ child, selected, style, value }) {
 export function TextInput({ type, className, id, style, hover, rows, name, value, placeholder, checked, animated }) {
 
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'input'
 
   if (type && typeof type == 'string' && type.toLowerCase() == 'textarea') elemType = 'textarea'
@@ -727,8 +727,8 @@ export function TextInput({ type, className, id, style, hover, rows, name, value
   if (id && typeof (id) == 'string') element.id = id
 
   if (type == 'textarea') if (rows) element.rows = rows
-  
-  if(type == 'checkbox') element.checked = checked
+
+  if (type == 'checkbox') element.checked = checked
 
   if (type && typeof type == 'string' && type.toLowerCase() !== 'textarea') element.type = type
 
@@ -811,7 +811,7 @@ export function GestureDetector({ child, animated, ...events }) {
 export function Button({ className, id, child, style, hover, animated }) {
 
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'button'
 
   let element = document.createElement(elemType)
@@ -871,9 +871,9 @@ export function Button({ className, id, child, style, hover, animated }) {
 }
 
 export function Link({ className, id, to, target, child, children, preventDefault, style, hover, animated }) {
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'a'
 
   let element = document.createElement(elemType)
@@ -1012,23 +1012,23 @@ export function IconText({ icon, iconStyle, text, textStyle, align, spacing, sty
 
 // SEPARATOR
 export function Separator({ width, height }) {
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'span'
 
   let element = document.createElement(elemType)
 
-  if(width) element.style.width = width
-  if(height) element.style.height = width
+  if (width) element.style.width = width
+  if (height) element.style.height = width
 
   return element
 }
 
 export function Line({ width, separator, height, color, animated }) {
-  
+
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'hr'
 
   let element = document.createElement(elemType)
@@ -1051,7 +1051,7 @@ export function Line({ width, separator, height, color, animated }) {
 // SEPARATOR
 
 
-// SLIDER / IMAGE / ICON
+// SLIDER / IMAGE / ICON / LOADING
 export function Slider({ width, height, border, background, prevStyle, nextStyle, itemsToShow, timing, transition, items, autoplay, showArrows }) {
 
   autoplay = autoplay == undefined ? true : autoplay
@@ -1061,13 +1061,13 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
   transition = timing <= 500 && transition >= 500 ? timing / 2 : transition
   itemsToShow = itemsToShow == undefined ? 1 : itemsToShow
   itemsToShow = itemsToShow > items.length ? items.length : itemsToShow
-  
+
   ItemsArray.push(ItemsArray.length)
   const identifier = `slider${ItemsArray.length}`
-  
+
   const slideWidthFull = width?.toString() || "600";
   const slideHeightFull = height?.toString() || "400";
-  
+
   let isPaused = false;
   let slideWidth = 0;
   let slideHeight = 0;
@@ -1076,11 +1076,11 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
   let slideItemSelected = 1;
   let slidePosition = 0;
 
-  if(!isNaN(Number(slideWidthFull))) {
+  if (!isNaN(Number(slideWidthFull))) {
     slideWidth = Number(slideWidthFull);
     slideTypeMetricWidth = "px";
   } else {
-    if(slideWidthFull.slice(-1) == "%") {
+    if (slideWidthFull.slice(-1) == "%") {
       slideWidth = slideWidthFull.slice(0, -1)
       slideTypeMetricWidth = slideWidthFull.slice(-1)
     } else {
@@ -1088,11 +1088,11 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
       slideTypeMetricWidth = slideWidthFull.slice(-2)
     }
   }
-  if(!isNaN(Number(slideHeightFull))) {
+  if (!isNaN(Number(slideHeightFull))) {
     slideHeight = Number(slideHeightFull);
     slideTypeMetricHeight = "px";
   } else {
-    if(slideHeightFull.slice(-1) == "%") {
+    if (slideHeightFull.slice(-1) == "%") {
       slideHeight = slideHeightFull.slice(0, -1)
       slideTypeMetricHeight = slideHeightFull.slice(-1)
     } else {
@@ -1101,15 +1101,15 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
     }
   }
 
-  if(autoplay) {
+  if (autoplay) {
     const sliderLoop = setInterval(() => {
       const slider = document.querySelector(`#${identifier}`)
-      if(!slider) {
+      if (!slider) {
         clearInterval(sliderLoop)
         return
       }
-      if(!isPaused) {
-        if(slideItemSelected != items.length + 1 - itemsToShow) {
+      if (!isPaused) {
+        if (slideItemSelected != items.length + 1 - itemsToShow) {
           slidePosition = slideItemSelected * slideWidth / itemsToShow;
           slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
           slideItemSelected++;
@@ -1123,7 +1123,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
 
   function next() {
     const slider = document.querySelector(`#${identifier}`)
-    if(slideItemSelected != items.length + 1 - itemsToShow) {
+    if (slideItemSelected != items.length + 1 - itemsToShow) {
       slidePosition = slideItemSelected * slideWidth / itemsToShow;
       slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
       slideItemSelected++;
@@ -1139,7 +1139,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
 
   function prev() {
     const slider = document.querySelector(`#${identifier}`)
-    if(slideItemSelected != 1) {
+    if (slideItemSelected != 1) {
       slideItemSelected--;
       slidePosition = (slideItemSelected - 1) * slideWidth / itemsToShow;
       slider.firstChild.style.marginLeft = "-" + slidePosition + slideTypeMetricWidth
@@ -1233,7 +1233,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
 export function Image({ className, id, alt, source, sizeMode, size, style, hover, animated }) {
 
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'img'
 
   let element = document.createElement(elemType)
@@ -1311,14 +1311,13 @@ export function Image({ className, id, alt, source, sizeMode, size, style, hover
 
 export function Icon({ name, color, size, zIndex, opacity }) {
 
-  
   ItemsArray.push(ItemsArray.length)
-  
+
   let elemType = 'i'
 
   let element = document.createElement(elemType)
 
-  element.className = name.split(' ').length == 1 ? 'fas ' : ''
+  element.className = name?.split(' ').length == 1 ? 'fas ' : ''
 
   if (name && typeof (name) == 'string') element.className += name
 
@@ -1343,7 +1342,27 @@ export function Icon({ name, color, size, zIndex, opacity }) {
 
   return element
 }
-// IMAGE / ICON
+
+export function Loading({ size, color }) {
+
+  if (size && typeof size != "number") size = null
+
+  return Center({
+    animated: {
+      type: "transform",
+      time: 1.5,
+      values: ["rotate(0)", "rotate(360deg)"],
+      count: "infinite",
+      transition: "linear"
+    },
+    child: Icon({
+      name: "fas fa-spinner",
+      color: color || "#444",
+      size: size || 40,
+    })
+  })
+}
+// SLIDER / IMAGE / ICON / LOADING
 
 
 // STYLE / ANIMATED
@@ -1361,7 +1380,7 @@ export function Style({ fonts, ...params }) {
     })
   }
 
-  if(params) {
+  if (params) {
     rules.forEach(rule => {
       if (rule.length > 1) {
 
@@ -1413,27 +1432,27 @@ export function Animated({ selector, type, time, values, count, transition, dire
 
   onload = onload == undefined ? true : onload
 
-  if(onload) {
+  if (onload) {
 
     let framePoints = [];
 
-    if(values.length == 1) {
+    if (values.length == 1) {
       framePoints.push('to')
     } else {
-      for(let i in values) {
+      for (let i in values) {
         const frameLength = 100 / (values.length - 1)
         framePoints.push(frameLength * i + '%')
       }
     }
-    
+
     framePoints = framePoints.map((item, index) => {
       return `${item} { ${type}: ${values[index]}; }`
     }).join('\n')
-    
+
     const elementStyle = document.querySelector("#style")
     const styleSheet = elementStyle.sheet;
     const animation = `@keyframes ${selector}Anim {\n${framePoints}\n}`;
-    
+
     styleSheet.insertRule(animation, styleSheet.cssRules.length);
 
     Style({
