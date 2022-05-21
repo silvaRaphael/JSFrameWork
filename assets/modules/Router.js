@@ -84,6 +84,8 @@ const Router = ({ routes }) => {
   let route = routes.filter(({ component, path }, index, arr) => {
 
     let pagePath = window.location.pathname
+    
+    pagePath = pagePath.charAt(pagePath.length-1) == "/" ? "/"+pagePath.split("/")[1] : pagePath
 
     let renderComponent = path == pagePath ? component : path == '/error' ? component : ""
 
