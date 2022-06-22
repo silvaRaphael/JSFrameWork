@@ -63,9 +63,9 @@ function changeRoute(event, path) {
 
   window.history.pushState({}, '', path)
 
-  window.osArray = [];
-  window.osIndex = 0;
-  window.osComponent = "";
+  window.stateArray = [];
+  window.stateIndex = 0;
+  window.stateComponent = "";
   window.depArray = [];
 
   document.querySelector(appRoot).firstChild.remove()

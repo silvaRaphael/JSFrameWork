@@ -8,7 +8,6 @@ const ItemsArray = [];
 // CONTAINERS
 export function View({ className, id, child, children, crossAxis, style, hover, animated }) {
 
-
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'div'
