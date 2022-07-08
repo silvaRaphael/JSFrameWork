@@ -45,12 +45,13 @@ function State(initialState, { name }) {
 
 function replaceChild(element, index, component) {
   let indexItemAppears = []
-  stateArray.forEach((element, i) => { if (element.component == component) indexItemAppears.push(i) })
+  osArray.forEach((element, i) => { if (element.component == component) indexItemAppears.push(i) })
 
-  stateIndex = indexItemAppears[0]
-  stateComponent = component
+  osIndex = indexItemAppears[0]
+  osComponent = component
 
-  const oldComponent = document.querySelector("[data-statefull='" + element + "']")
+  let oldComponent = document.querySelector("[data-statefull='" + element + "']")
+  if (!oldComponent) oldComponent = root
   oldComponent.parentNode.replaceChild(eval(component + '()'), oldComponent)
 }
 
