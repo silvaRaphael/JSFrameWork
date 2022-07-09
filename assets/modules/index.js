@@ -1243,6 +1243,79 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
   )
 }
 
+export function Video({ className, id, source, autoplay, muted, loop, type, style, hover, animated }) {
+
+  ItemsArray.push(ItemsArray.length)
+
+  let elemType = 'video'
+
+  let element = document.createElement(elemType)
+  let sourceElement = document.createElement('source')
+
+  render(sourceElement, element)
+
+  if (className && typeof (className) == 'string') element.className = className
+
+  if (id && typeof (id) == 'string') element.id = id
+
+  if (source && typeof (source) == 'string') sourceElement.src = source
+  
+  if (autoplay) element.autoplay = autoplay
+
+  if (muted) element.muted = muted
+  
+  if (loop) element.loop = loop
+
+  if (type && typeof (type) == 'string') sourceElement.type = type
+
+  if (style && typeof style == 'object' ||
+    hover && typeof hover == 'object' ||
+    animated && typeof animated == 'object') {
+
+    let identifier = `${elemType}${ItemsArray.length}`
+
+    element.classList.add(identifier)
+
+    if (style && typeof style == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(style)
+
+      newStyle.unshift(["selector", `.${identifier}`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+
+    if (hover && typeof hover == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(hover)
+
+      newStyle.unshift(["selector", `.${identifier}:hover`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+
+    if (animated && typeof animated == 'object') {
+
+      let animatedParams = {}
+      let animation = Object.entries(animated)
+
+      animation.unshift(["selector", `${identifier}`])
+
+      animation.map(item => animatedParams[item[0]] = item[1])
+
+      Animated(animatedParams)
+    }
+  }
+
+  return element
+}
+
 export function Image({ className, id, alt, source, sizeMode, size, style, hover, animated }) {
 
   ItemsArray.push(ItemsArray.length)
