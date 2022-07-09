@@ -209,17 +209,31 @@ export function Grid({ className, id, child, children, crossAxis, style, hover, 
     }
 
     if (rows) {
-      Style({
-        selector: `.${identifier}`,
-        gridTemplateRows: `repeat( ${rows}, 1fr )`,
-      })
+      if(typeof rows == 'object') {
+        Style({
+          selector: `.${identifier}`,
+          gridTemplateRows: rows.join(' '),
+        })
+      } else {
+        Style({
+          selector: `.${identifier}`,
+          gridTemplateRows: `repeat( ${rows}, 1fr )`,
+        })
+      }
     }
 
     if (columns) {
-      Style({
-        selector: `.${identifier}`,
-        gridTemplateColumns: `repeat( ${columns}, 1fr )`,
-      })
+      if(typeof columns == 'object') {
+        Style({
+          selector: `.${identifier}`,
+          gridTemplateColumns: columns.join(' '),
+        })
+      } else {
+        Style({
+          selector: `.${identifier}`,
+          gridTemplateColumns: `repeat( ${columns}, 1fr )`,
+        })
+      }
     }
 
     if (style && typeof style == 'object') {
