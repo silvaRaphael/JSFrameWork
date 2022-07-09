@@ -74,6 +74,8 @@ function changeRoute(event, path) {
 
 const routesArr = [];
 const Router = ({ routes }) => {
+  
+  window.scrollTo({ top: 0, behavior: 'auto' });
 
   routes = routes || routesArr[0]
 
