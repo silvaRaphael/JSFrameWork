@@ -51,7 +51,7 @@ function replaceChild(element, index, component) {
   osComponent = component
 
   let oldComponent = document.querySelector("[data-statefull='" + element + "']")
-  if (!oldComponent) oldComponent = root
+  if (!oldComponent) oldComponent = root.firstChild
   oldComponent.parentNode.replaceChild(eval(component + '()'), oldComponent)
 }
 
