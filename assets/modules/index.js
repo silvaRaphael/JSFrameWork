@@ -8,6 +8,7 @@ const ItemsArray = [];
 // CONTAINERS
 export function View({ className, id, child, children, crossAxis, style, hover, animated }) {
 
+
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'div'
@@ -209,31 +210,17 @@ export function Grid({ className, id, child, children, crossAxis, style, hover, 
     }
 
     if (rows) {
-      if(typeof rows == 'object') {
-        Style({
-          selector: `.${identifier}`,
-          gridTemplateRows: rows.join(' '),
-        })
-      } else {
-        Style({
-          selector: `.${identifier}`,
-          gridTemplateRows: `repeat( ${rows}, 1fr )`,
-        })
-      }
+      Style({
+        selector: `.${identifier}`,
+        gridTemplateRows: `repeat( ${rows}, 1fr )`,
+      })
     }
 
     if (columns) {
-      if(typeof columns == 'object') {
-        Style({
-          selector: `.${identifier}`,
-          gridTemplateColumns: columns.join(' '),
-        })
-      } else {
-        Style({
-          selector: `.${identifier}`,
-          gridTemplateColumns: `repeat( ${columns}, 1fr )`,
-        })
-      }
+      Style({
+        selector: `.${identifier}`,
+        gridTemplateColumns: `repeat( ${columns}, 1fr )`,
+      })
     }
 
     if (style && typeof style == 'object') {
@@ -563,7 +550,7 @@ export function Expanded({ className, id, child, children, crossAxis, style, hov
 
 
 // TEXT
-export function Text({ type, className, id, child, style, hover, animated }) {
+export function Text({ type, className, id, child, style, hover, animated, contenteditable }) {
 
   ItemsArray.push(ItemsArray.length)
 
@@ -576,6 +563,8 @@ export function Text({ type, className, id, child, style, hover, animated }) {
   if (className && typeof (className) == 'string') element.className = className
 
   if (id && typeof (id) == 'string') element.id = id
+
+  if(contenteditable && typeof contenteditable == 'boolean') element.setAttribute('contenteditable', contenteditable)
 
   if (child) element.innerHTML = child
 
@@ -725,7 +714,7 @@ export function Option({ child, selected, style, value }) {
   return element
 }
 
-export function TextInput({ type, className, id, style, hover, rows, name, value, placeholder, checked, animated }) {
+export function TextInput({ type, className, id, style, hover, rows, maxlength, name, value, placeholder, checked, animated }) {
 
   ItemsArray.push(ItemsArray.length)
 
@@ -746,6 +735,8 @@ export function TextInput({ type, className, id, style, hover, rows, name, value
   if (type && typeof type == 'string' && type.toLowerCase() !== 'textarea') element.type = type
 
   if (name && typeof (name) == 'string') element.name = name
+
+  if (maxlength) element.setAttribute('maxlength', maxlength)
 
   if (value && typeof (value) == 'string') element.value = value
 
@@ -1241,79 +1232,6 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
       ]
     })
   )
-}
-
-export function Video({ className, id, source, autoplay, muted, loop, type, style, hover, animated }) {
-
-  ItemsArray.push(ItemsArray.length)
-
-  let elemType = 'video'
-
-  let element = document.createElement(elemType)
-  let sourceElement = document.createElement('source')
-
-  render(sourceElement, element)
-
-  if (className && typeof (className) == 'string') element.className = className
-
-  if (id && typeof (id) == 'string') element.id = id
-
-  if (source && typeof (source) == 'string') sourceElement.src = source
-  
-  if (autoplay) element.autoplay = autoplay
-
-  if (muted) element.muted = muted
-  
-  if (loop) element.loop = loop
-
-  if (type && typeof (type) == 'string') sourceElement.type = type
-
-  if (style && typeof style == 'object' ||
-    hover && typeof hover == 'object' ||
-    animated && typeof animated == 'object') {
-
-    let identifier = `${elemType}${ItemsArray.length}`
-
-    element.classList.add(identifier)
-
-    if (style && typeof style == 'object') {
-
-      let styleParams = {}
-      let newStyle = Object.entries(style)
-
-      newStyle.unshift(["selector", `.${identifier}`])
-
-      newStyle.map(item => styleParams[item[0]] = item[1])
-
-      Style(styleParams)
-    }
-
-    if (hover && typeof hover == 'object') {
-
-      let styleParams = {}
-      let newStyle = Object.entries(hover)
-
-      newStyle.unshift(["selector", `.${identifier}:hover`])
-
-      newStyle.map(item => styleParams[item[0]] = item[1])
-
-      Style(styleParams)
-    }
-
-    if (animated && typeof animated == 'object') {
-
-      let animatedParams = {}
-      let animation = Object.entries(animated)
-
-      animation.unshift(["selector", `${identifier}`])
-
-      animation.map(item => animatedParams[item[0]] = item[1])
-
-      Animated(animatedParams)
-    }
-  }
-
-  return element
 }
 
 export function Image({ className, id, alt, source, sizeMode, size, style, hover, animated }) {
