@@ -7,8 +7,7 @@ const ItemsArray = [];
 
 // CONTAINERS
 export function View({ className, id, child, children, crossAxis, style, hover, animated }) {
-
-
+  
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'div'
@@ -80,8 +79,7 @@ export function View({ className, id, child, children, crossAxis, style, hover, 
 }
 
 export function Container({ className, id, child, children, crossAxis, style, hover, animated }) {
-
-
+  
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'div'
@@ -153,7 +151,6 @@ export function Container({ className, id, child, children, crossAxis, style, ho
 }
 
 export function Grid({ className, id, child, children, crossAxis, style, hover, rows, columns, gap, rowGap, columnGap, animated }) {
-
 
   ItemsArray.push(ItemsArray.length)
 
@@ -265,7 +262,6 @@ export function Grid({ className, id, child, children, crossAxis, style, hover, 
 
 export function Center({ className, id, child, children, style, hover, animated }) {
 
-
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'div'
@@ -329,7 +325,6 @@ export function Center({ className, id, child, children, style, hover, animated 
 }
 
 export function Row({ className, id, child, children, crossAxis, style, hover, animated }) {
-
 
   ItemsArray.push(ItemsArray.length)
 
@@ -403,7 +398,6 @@ export function Row({ className, id, child, children, crossAxis, style, hover, a
 
 export function Column({ className, id, child, children, crossAxis, style, hover, animated }) {
 
-
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'div'
@@ -475,7 +469,6 @@ export function Column({ className, id, child, children, crossAxis, style, hover
 }
 
 export function Expanded({ className, id, child, children, crossAxis, style, hover, animated }) {
-
 
   ItemsArray.push(ItemsArray.length)
 
@@ -551,7 +544,7 @@ export function Expanded({ className, id, child, children, crossAxis, style, hov
 
 // TEXT
 export function Text({ type, className, id, child, style, hover, animated, contenteditable }) {
-
+  
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'p'
@@ -628,7 +621,7 @@ export function Statefull({ key, child }) {
 }
 
 export function Select({ className, id, children, style, hover, name, value, animated }) {
-
+  
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'select'
@@ -698,7 +691,7 @@ export function Select({ className, id, children, style, hover, name, value, ani
 }
 
 export function Option({ child, selected, style, value }) {
-
+  
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'option'
@@ -715,7 +708,7 @@ export function Option({ child, selected, style, value }) {
 }
 
 export function TextInput({ type, className, id, style, hover, rows, maxlength, name, value, placeholder, checked, animated }) {
-
+  
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'input'
@@ -813,7 +806,7 @@ export function GestureDetector({ child, animated, ...events }) {
 }
 
 export function Button({ className, id, child, style, hover, animated }) {
-
+  
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'button'
@@ -875,7 +868,7 @@ export function Button({ className, id, child, style, hover, animated }) {
 }
 
 export function Link({ className, id, to, target, child, children, preventDefault, style, hover, animated }) {
-
+  
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'a'
@@ -1016,7 +1009,7 @@ export function IconText({ icon, iconStyle, text, textStyle, align, spacing, sty
 
 // SEPARATOR
 export function Separator({ width, height }) {
-
+  
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'span'
@@ -1030,7 +1023,7 @@ export function Separator({ width, height }) {
 }
 
 export function Line({ width, separator, height, color, animated }) {
-
+  
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'hr'
@@ -1065,7 +1058,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
   transition = timing <= 500 && transition >= 500 ? timing / 2 : transition
   itemsToShow = itemsToShow == undefined ? 1 : itemsToShow
   itemsToShow = itemsToShow > items.length ? items.length : itemsToShow
-
+  
   ItemsArray.push(ItemsArray.length)
   const identifier = `slider${ItemsArray.length}`
 
