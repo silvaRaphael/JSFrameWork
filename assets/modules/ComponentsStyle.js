@@ -52,8 +52,13 @@ export default function ComponentsStyle() {
       boxShadow: `0 0 .1rem ${Colors?.textColor}`,
     }),
     Style({
-      selector: ["input", "textarea"],
-      width: '100%'
+      selector: ["input", "select", "textarea"],
+      width: '100%',
+      color: Colors.text,
+    }),
+    Style({
+      selector: ["input::placeholder", "textarea::placeholder"],
+      color: Colors.gray,
     }),
     Style({
       selector: ["[data-row]", "[data-column]", "[data-view]", "[data-center]", "[data-expanded]"],
@@ -92,7 +97,8 @@ export default function ComponentsStyle() {
       alignItems: "center",
       justifyContent: "center",
       flex: "1",
-      width: "100%"
+      width: "100%",
+      height: "-webkit-fill-available",
     })
   )
 }

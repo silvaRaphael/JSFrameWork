@@ -10,7 +10,7 @@ function RouterLink({ to, child, children, style, hover }) {
 
   if (to && typeof to == 'string') {
     element.href = to
-    element.addEventListener('click', e => changeRoute(e, to))
+    element.addEventListener('click', e => changeRoute(to))
   }
 
   if (child) {
@@ -56,26 +56,23 @@ function RouterLink({ to, child, children, style, hover }) {
   return element
 }
 
-function changeRoute(event, path) {
+export function changeRoute(path) {
 
-  event = event || window.event
-  event.preventDefault()
+  let e = event || window.event
+  e.preventDefault()
 
   window.history.pushState({}, '', path)
 
-  window.stateArray = [];
-  window.stateIndex = 0;
-  window.stateComponent = "";
+  window.osArray = [];
+  window.osIndex = 0;
+  window.osComponent = "";
   window.depArray = [];
 
-  document.querySelector(appRoot).firstChild.remove()
   render(Router({}))
 }
 
 const routesArr = [];
 const Router = ({ routes }) => {
-  
-  window.scrollTo({ top: 0, behavior: 'auto' });
 
   routes = routes || routesArr[0]
 
@@ -99,6 +96,6 @@ const Router = ({ routes }) => {
   return route.length > 0 && window[route[0].component.name]()
 }
 
-window.onpopstate = e => changeRoute(e, location.pathname)
+window.onpopstate = e => changeRoute(location.pathname)
 
 export { Router, RouterLink }

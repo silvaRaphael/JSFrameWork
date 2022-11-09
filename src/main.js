@@ -25,7 +25,7 @@ function Home() {
         }),
       ]
     })
-  })
+  });
 }
 
 function Error() {
@@ -51,24 +51,22 @@ function Error() {
         })
       ]
     })
-  })
+  });
 }
 
 export default function AppRoutes() {
-  return (
-    Router({
-      routes: [
-        {
-          component: Home,
-          path: '/'
-        },
-        {
-          component: Error,
-          path: '/error'
-        },
-      ]
-    })
-  )
+  return Router({
+    routes: [
+      {
+        component: Home,
+        path: '/'
+      },
+      {
+        component: Error,
+        path: '/error'
+      },
+    ]
+  });
 }
 
-render(AppRoutes())
+render(AppRoutes());

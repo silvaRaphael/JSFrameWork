@@ -11,7 +11,7 @@ function render(element, container) {
   if (!container) container = root
 
   if (container == root) {
-    container.children[0] && container.children[0].remove()
+    if (root.firstChild) container.firstChild.remove();
   }
 
   if (typeof element == "string" || typeof element == "number") {
@@ -24,26 +24,29 @@ function render(element, container) {
 
 }
 
-window.stateArray = [];
-window.stateIndex = 0;
-window.stateComponent = "";
+window.osArray = [];
+window.osIndex = 0;
+window.osComponent = "";
 function State(initialState, { name }) {
-  let index = stateIndex
-  stateArray[index] = stateArray[index] || { id: index, component: name, value: initialState }
+  let index = osIndex
+  osArray[index] = osArray[index] || { id: index, component: name, value: initialState }
 
-  const setState = (newState) => {
-    let component = stateArray[index].component
-    stateArray = stateArray.map(p =>
+  const setState = (newState, then) => {
+    let component = osArray[index].component
+    osArray = osArray.map(p =>
       p.id === index ? { ...p, value: newState } : p
     );
     replaceChild(component, index, component)
+
+    if (then) then()
   }
 
-  stateIndex++
-  return [stateArray[index].value, setState]
+  osIndex++
+  return [osArray[index].value, setState]
 }
 
 function replaceChild(element, index, component) {
+
   let indexItemAppears = []
   osArray.forEach((element, i) => { if (element.component == component) indexItemAppears.push(i) })
 
@@ -52,15 +55,22 @@ function replaceChild(element, index, component) {
 
   let oldComponent = document.querySelector("[data-statefull='" + element + "']")
   if (!oldComponent) oldComponent = root.firstChild
+
   oldComponent.parentNode.replaceChild(eval(component + '()'), oldComponent)
 }
 
 window.depArray = [];
-function Listen(callback, dependencies, component) {
-  depArray.push(JSON.stringify(component.name + "/" + JSON.stringify(dependencies)))
-  if (depArray.length == 0 || JSON.stringify(depArray[depArray.length - 2]) != JSON.stringify(depArray[depArray.length - 1])) {
-    callback()
+function Effect(callback, dependencies, component) {
+
+  if (!depArray[`${component.name}`]) {
+    depArray[`${component.name}`] = [];
   }
+  depArray[`${component.name}`].push(JSON.stringify(component.name + "/" + JSON.stringify(dependencies)));
+
+  if ((JSON.stringify(depArray[`${component.name}`][depArray[`${component.name}`].length - 2])) != (JSON.stringify(depArray[`${component.name}`][depArray[`${component.name}`].length - 1]))) {
+    callback();
+  }
+
 }
 
-export { render, State, Listen }
+export { render, State, Effect }

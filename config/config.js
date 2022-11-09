@@ -25,9 +25,9 @@ const Fonts = {
 }
 
 const BreakPoints = {
-  mobile: window.matchMedia('(max-width: 767px)').matches,
-  tablet: window.matchMedia('(min-width: 768px) and (max-width: 1023px)').matches,
-  desktop: window.matchMedia('(min-width: 1024px)').matches
+  mobile: window.matchMedia('(max-width: 767px)'),
+  tablet: window.matchMedia('(min-width: 768px) and (max-width: 1023px)'),
+  desktop: window.matchMedia('(min-width: 1024px)')
 }
 
 export { appRoot, Colors, Sizes, Fonts, BreakPoints }
