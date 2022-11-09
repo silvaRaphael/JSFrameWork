@@ -277,7 +277,7 @@ export function Grid({ className, id, child, children, crossAxis, style, hover, 
   return element
 }
 
-export function Center({ className, id, child, children, style, hover, animated }) {
+export function Center({ className, id, child, style, hover, animated }) {
 
 
   ItemsArray.push(ItemsArray.length)
@@ -711,7 +711,7 @@ export function Select({ className, id, children, style, hover, name, value, ani
   return element
 }
 
-export function Option({ child, selected, style, value }) {
+export function Option({ child, selected, value }) {
 
   ItemsArray.push(ItemsArray.length)
 
