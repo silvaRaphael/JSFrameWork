@@ -4,7 +4,7 @@
 ### Render Components
 ```javascript
 // Renderiza um componente em tela
-render(Component);
+render(Component, Container);
 ```
 
 ### State Components
