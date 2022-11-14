@@ -11,18 +11,15 @@ function Home() {
     },
     child: Column({
       children: [
-        Text({
+        Text('Home Page', {
           style: {
             color: Colors.textColor,
             fontFamily: Fonts.primary,
             fontWeight: '500',
             fontSize: Sizes.title
           },
-          child: 'Home Page',
         }),
-        Text({
-          child: 'Comece seu projeto em src/main.js'
-        }),
+        Text('Comece seu projeto em src/main.js'),
       ]
     })
   });
@@ -36,14 +33,13 @@ function Error() {
     },
     child: Column({
       children: [
-        Text({
+        Text('Página não Encontrada!', {
           style: {
             color: Colors.textColor,
             fontFamily: Fonts.primary,
             fontWeight: '500',
             fontSize: Sizes.title
           },
-          child: 'Página não Encontrada!',
         }),
         RouterLink({
           to: '/',

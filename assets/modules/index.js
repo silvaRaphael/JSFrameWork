@@ -3,6 +3,23 @@ import { render } from "./hooks.js";
 import ComponentsStyle from "./ComponentsStyle.js";
 import { BreakPoints } from "../../config/config.js";
 
+window.Path = (path) => '/' + path;
+window.Px = (...nums) => nums.join('px ') + 'px';
+window.Pc = (...nums) => nums.join('% ') + '%';
+window.Align = {
+  center: 'center',
+  start: 'start',
+  end: 'end',
+  spaceBetween: 'space-between',
+  spaceEvenly: 'space-evenly',
+  spaceAround: 'space-around',
+}
+window.Size = {
+  minContent: 'min-content',
+  maxContent: 'max-content',
+  fullContent: '100%',
+}
+
 window.getElement = (el, all) => {
   if (all) {
     return document.querySelectorAll(el);
@@ -564,7 +581,7 @@ export function Expanded({ className, id, child, children, crossAxis, style, hov
 
 
 // TEXT
-export function Text({ type, className, id, child, style, hover, animated, contenteditable }) {
+export function Text(text, { type, className, id, style, hover, animated, contenteditable } = {}) {
 
   ItemsArray.push(ItemsArray.length)
 
@@ -580,7 +597,7 @@ export function Text({ type, className, id, child, style, hover, animated, conte
 
   if (contenteditable && typeof contenteditable == 'boolean') element.setAttribute('contenteditable', contenteditable)
 
-  if (child) element.innerHTML = child
+  if (text && typeof text) element.innerHTML = text
 
   if (style && typeof style == 'object' ||
     hover && typeof hover == 'object' ||
