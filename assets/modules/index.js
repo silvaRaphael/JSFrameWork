@@ -1419,6 +1419,7 @@ export function Style({ fonts, ...params }) {
 
   if (params) {
     rules.forEach(rule => {
+
       if (rule.length > 1) {
 
         let j = 1
@@ -1440,15 +1441,17 @@ export function Style({ fonts, ...params }) {
 
               prop[0] = prop[0].split(/(?=[A-Z])/).join("-").toLowerCase()
 
-              let firstL = prop[1].charAt(0)
-              let lastL = prop[1].charAt(prop[1].length - 1)
+              if (prop[1].length > 1) {
+                let firstL = prop[1].charAt(0)
+                let lastL = prop[1].charAt(prop[1].length - 1)
 
-              if (firstL === "{" && lastL === "}") {
-                prop[1] = prop[1].split('')
-                prop[1].shift()
-                prop[1].pop()
-                newProp = prop[1].join('')
-                important = true
+                if (firstL === "{" && lastL === "}") {
+                  prop[1] = prop[1].split('')
+                  prop[1].shift()
+                  prop[1].pop()
+                  newProp = prop[1].join('')
+                  important = true
+                }
               }
             }
 
