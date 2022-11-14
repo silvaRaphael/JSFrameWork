@@ -771,7 +771,7 @@ export function TextInput({ type, className, id, style, hover, autocomplete, row
 
   if (maxlength) element.setAttribute('maxlength', maxlength)
 
-  if (value && typeof (value) == 'string') element.value = value
+  if (value) element.value = value
 
   if (placeholder && typeof (placeholder) == 'string') element.placeholder = placeholder
 
