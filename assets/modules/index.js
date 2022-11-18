@@ -1403,7 +1403,7 @@ export function Loading({ size, color }) {
 
 
 // STYLE / ANIMATED
-export function Style({ fonts, ...params }) {
+export function Style({ fonts, customSelector, ...params }) {
 
   let rules = [Object.entries(params)]
 
@@ -1420,53 +1420,122 @@ export function Style({ fonts, ...params }) {
   if (params) {
     rules.forEach(rule => {
 
-      if (rule.length > 1) {
+      if (rule.length > 1 || (customSelector && rule.length > 0)) {
 
         let j = 1
-        let selector = rule[0][1]
+        let selector = customSelector ?? rule[0][1]
         let propStr = ''
 
-        if (Array.isArray(rule[1][0])) {
-          rule = rule[1]
-          j = 0
-        }
+        if(selector) {
 
-        rule.forEach((prop, index) => {
+          if (rule[1] && Array.isArray(rule[1][0])) {
+            rule = rule[1]
+            j = 0
+          }
 
-          if (prop[1]) {
-            let important = false
-            let newProp = prop[1]
+          rule.forEach((prop, index) => {
 
-            if (index != 0) {
+            if (prop[1]) {
+              let important = false
+              let newProp = prop[1]
 
-              prop[0] = prop[0].split(/(?=[A-Z])/).join("-").toLowerCase()
+              if (index != 0) {
 
-              if (prop[1].length > 1) {
-                let firstL = prop[1].charAt(0)
-                let lastL = prop[1].charAt(prop[1].length - 1)
+                prop[0] = prop[0].split(/(?=[A-Z])/).join("-").toLowerCase()
 
-                if (firstL === "{" && lastL === "}") {
-                  prop[1] = prop[1].split('')
-                  prop[1].shift()
-                  prop[1].pop()
-                  newProp = prop[1].join('')
-                  important = true
+                if (prop[1].length > 1) {
+                  let firstL = prop[1].charAt(0)
+                  let lastL = prop[1].charAt(prop[1].length - 1)
+
+                  if (firstL === "{" && lastL === "}") {
+                    prop[1] = prop[1].split('')
+                    prop[1].shift()
+                    prop[1].pop()
+                    newProp = prop[1].join('')
+                    important = true
+                  }
                 }
               }
+
+              if (prop[0] != 'selector') {
+
+                propStr += prop[0] + ': ' + newProp + (important ? ' !important' : '') + ';\n'
+              }
             }
+          })
 
-            if (prop[0] != 'selector') {
-
-              propStr += prop[0] + ': ' + newProp + (important ? ' !important' : '') + ';\n'
-            }
-          }
-        })
-
-        styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length)
+          styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length)
+        }
       }
     })
   }
+
+  return { fonts, customSelector, ...params }
 }
+function hover({ customSelector, ...params }) {
+
+  let rules = [Object.entries(params)]
+
+  const elementStyle = document.querySelector("#style")
+
+  let styleSheet = elementStyle.sheet
+
+  if (params) {
+    rules.forEach(rule => {
+
+      if (rule.length > 1 || (customSelector && rule.length > 0)) {
+
+        let j = 1
+        let selector = (customSelector + ':hover') ?? (rule[0][1] + ':hover')
+        let propStr = ''
+
+        if(selector) {
+
+          if (rule[1] && Array.isArray(rule[1][0])) {
+            rule = rule[1]
+            j = 0
+          }
+
+          rule.forEach((prop, index) => {
+
+            if (prop[1]) {
+              let important = false
+              let newProp = prop[1]
+
+              if (index != 0) {
+
+                prop[0] = prop[0].split(/(?=[A-Z])/).join("-").toLowerCase()
+
+                if (prop[1].length > 1) {
+                  let firstL = prop[1].charAt(0)
+                  let lastL = prop[1].charAt(prop[1].length - 1)
+
+                  if (firstL === "{" && lastL === "}") {
+                    prop[1] = prop[1].split('')
+                    prop[1].shift()
+                    prop[1].pop()
+                    newProp = prop[1].join('')
+                    important = true
+                  }
+                }
+              }
+
+              if (prop[0] != 'selector') {
+
+                propStr += prop[0] + ': ' + newProp + (important ? ' !important' : '') + ';\n'
+              }
+            }
+          })
+
+          styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length)
+        }
+      }
+    })
+  }
+
+  return { customSelector, ...params }
+}
+Style['hover'] = hover
 
 export function Animated({ selector, type, time, values, count, transition, direction, onload }) {
 
