@@ -39,7 +39,6 @@ const ItemsArray = [];
 // CONTAINERS
 export function View({ className, id, child, children, crossAxis, style, hover, animated }) {
 
-
   ItemsArray.push(ItemsArray.length)
 
   let elemType = 'div'
@@ -66,7 +65,7 @@ export function View({ className, id, child, children, crossAxis, style, hover, 
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -139,7 +138,7 @@ export function Container({ className, id, child, children, crossAxis, style, ho
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -215,7 +214,7 @@ export function Grid({ className, id, child, children, crossAxis, style, hover, 
     rowGap ||
     columnGap) {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -315,7 +314,7 @@ export function Center({ className, id, child, style, hover, animated }) {
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -388,7 +387,7 @@ export function Row({ className, id, child, children, crossAxis, style, hover, a
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -461,7 +460,7 @@ export function Column({ className, id, child, children, crossAxis, style, hover
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -534,7 +533,7 @@ export function Expanded({ className, id, child, children, crossAxis, style, hov
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -603,7 +602,7 @@ export function Text(text, { type, className, id, style, hover, animated, conten
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -684,7 +683,7 @@ export function Select({ className, id, children, style, hover, name, value, ani
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -779,7 +778,7 @@ export function TextInput({ type, className, id, style, hover, autocomplete, row
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -863,7 +862,7 @@ export function Button({ className, id, child, style, hover, animated }) {
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -937,7 +936,7 @@ export function Link({ className, id, to, target, child, children, preventDefaul
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -1070,7 +1069,7 @@ export function Line({ width, separator, height, color, animated }) {
 
   let element = document.createElement(elemType)
 
-  let identifier = `${elemType}${ItemsArray.length}`
+  let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
   element.classList.add(identifier)
 
@@ -1302,7 +1301,7 @@ export function Image({ className, id, alt, source, sizeMode, size, style, hover
     hover && typeof hover == 'object' ||
     animated && typeof animated == 'object') {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -1360,7 +1359,7 @@ export function Icon({ name, color, size, zIndex, opacity }) {
 
   if (color && typeof color == 'string' || size || zIndex || opacity) {
 
-    let identifier = `${elemType}${ItemsArray.length}`
+    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
@@ -1426,7 +1425,7 @@ export function Style({ fonts, customSelector, ...params }) {
         let selector = customSelector ?? rule[0][1]
         let propStr = ''
 
-        if(selector) {
+        if (selector) {
 
           if (rule[1] && Array.isArray(rule[1][0])) {
             rule = rule[1]
@@ -1489,7 +1488,7 @@ function hover({ customSelector, ...params }) {
         let selector = (customSelector + ':hover') ?? (rule[0][1] + ':hover')
         let propStr = ''
 
-        if(selector) {
+        if (selector) {
 
           if (rule[1] && Array.isArray(rule[1][0])) {
             rule = rule[1]

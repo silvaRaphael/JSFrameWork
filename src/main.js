@@ -12,6 +12,7 @@ function Home() {
     child: Column({
       children: [
         Text('Home Page', {
+          className: 'titulo',
           style: {
             color: Colors.textColor,
             fontFamily: Fonts.primary,
