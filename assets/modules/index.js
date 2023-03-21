@@ -1056,7 +1056,7 @@ export function Separator({ width, height }) {
   let element = document.createElement(elemType)
 
   if (width) element.style.width = width
-  if (height) element.style.height = width
+  if (height) element.style.height = height
 
   return element
 }
@@ -1359,7 +1359,7 @@ export function Icon({ name, color, size, zIndex, opacity }) {
 
   if (color && typeof color == 'string' || size || zIndex || opacity) {
 
-    let identifier = (className && typeof (className) == 'string') ? className : `${elemType}${ItemsArray.length}`
+    let identifier = `${elemType}${ItemsArray.length}`
 
     element.classList.add(identifier)
 
