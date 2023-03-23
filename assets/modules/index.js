@@ -36,6 +36,51 @@ Object.values(BreakPoints).map(breakPoint => {
 
 const ItemsArray = [];
 
+// ALERT
+export function showAlert({ child, transition }) {
+  ItemsArray.push(ItemsArray.length)
+
+  const key = Math.random().toString().slice(2, 10)
+
+  function closeAlert() {
+    if (!getElement(`alert${key}`) != false) {
+      getElement(`#alert${key}`).style.opacity = '0'
+      setTimeout(() => {
+        getElement(`#alert${key}`)?.remove()
+      }, transition ?? 250);
+    }
+  }
+
+  const element = GestureDetector({
+    onclick: event => {
+      if (event.target.id == `alert${key}close`) closeAlert()
+    },
+    child: Container({
+      id: `alert${key}`,
+      style: {
+        position: 'fixed',
+        top: Px(0),
+        height: Px(0),
+        width: Pc(100),
+        height: Pc(100),
+        opacity: '0',
+        zIndex: 9999,
+        cursor: 'unset',
+        transition: '.25s',
+      },
+      child: Center({
+        id: `alert${key}close`,
+        child: child
+      })
+    })
+  })
+
+  render(element, getElement('body'))
+  setTimeout(() => {
+    getElement(`#alert${key}`).style.opacity = '1'
+  }, transition ?? 250);
+}
+
 // CONTAINERS
 export function View({ className, id, child, children, crossAxis, style, hover, animated }) {
 
