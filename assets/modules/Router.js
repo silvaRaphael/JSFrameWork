@@ -72,7 +72,7 @@ export function changeRoute(path) {
 }
 
 const routesArr = [];
-const Router = ({ routes }) => {
+const Router = ({ affixTitle = '', suffixTitle = '', routes }) => {
 
   routes = routes || routesArr[0]
 
@@ -84,6 +84,15 @@ const Router = ({ routes }) => {
 
     let pagePath = window.location.pathname
 
+    if (path.includes('(key)')) {
+      let path_custom = path.split('/').map((item) => item == '(key)')
+      let content_custom = pagePath.split('/')[path_custom.indexOf(true)]
+
+      if (path.split('/')[path_custom.indexOf(true) - 1] == pagePath.split('/')[path_custom.indexOf(true) - 1]) {
+        path = pagePath
+      }
+    }
+
     let renderComponent = path == pagePath ? component : path == '/error' ? component : ""
 
     return renderComponent
@@ -92,6 +101,8 @@ const Router = ({ routes }) => {
   let path = route.length > 0 ? route[0].path : '/error'
 
   routesArr[0] = routes
+
+  if (route[0].title) document.title = affixTitle + route[0].title + suffixTitle;
 
   return route.length > 0 && window[route[0].component.name]()
 }

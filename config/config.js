@@ -1,8 +1,19 @@
 const appRoot = "#root";
 
 const Colors = {
-  bodyColor: '#EEEEEE',
-  textColor: '#1B1B1B',
+  primary: '#FEA501',
+  secondary: '#397886',
+  tertiary: '#C26508',
+  alert: '#d11616',
+  success: '#4BB543',
+
+  dark: '#090909',
+  light: '#E9E9E9',
+
+  black: '#000000',
+  white: '#ffffff',
+
+  transparent: 'transparent',
 }
 
 const Sizes = {

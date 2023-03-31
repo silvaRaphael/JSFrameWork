@@ -7,17 +7,17 @@ function Home() {
   return Center({
     style: {
       height: '100vh',
-      backgroundColor: Colors.bodyColor
+      backgroundColor: Colors.light
     },
     child: Column({
       children: [
         Text('Home Page', {
           className: 'titulo',
           style: {
-            color: Colors.textColor,
+            color: Colors.dark,
             fontFamily: Fonts.primary,
             fontWeight: '500',
-            fontSize: Sizes.title
+            fontSize: Px(30),
           },
         }),
         Text('Comece seu projeto em src/main.js'),
@@ -30,16 +30,16 @@ function Error() {
   return Center({
     style: {
       height: '100vh',
-      backgroundColor: Colors.bodyColor
+      backgroundColor: Colors.light,
     },
     child: Column({
       children: [
         Text('Página não Encontrada!', {
           style: {
-            color: Colors.textColor,
+            color: Colors.dark,
             fontFamily: Fonts.primary,
             fontWeight: '500',
-            fontSize: Sizes.title
+            fontSize: Px(30),
           },
         }),
         RouterLink({
@@ -56,11 +56,13 @@ export default function AppRoutes() {
     routes: [
       {
         component: Home,
-        path: '/'
+        path: '/',
+        title: 'Home',
       },
       {
         component: Error,
-        path: '/error'
+        path: '/error',
+        title: 'Erro',
       },
     ]
   });

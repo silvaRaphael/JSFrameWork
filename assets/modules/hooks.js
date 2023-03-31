@@ -1,8 +1,14 @@
 import { appRoot } from '../../config/config.js';
 import { Router } from "./Router.js";
 
+import * as allModules from '../modules/index.js';
+import * as allConfigs from '../../config/config.js';
 import * as allFromMain from '../../src/main.js';
+
+Object.entries(allModules).forEach(([name, exported]) => window[name] = exported);
+Object.entries(allConfigs).forEach(([name, exported]) => window[name] = exported);
 Object.entries(allFromMain).forEach(([name, exported]) => window[name] = exported);
+
 
 const root = document.querySelector(appRoot)
 

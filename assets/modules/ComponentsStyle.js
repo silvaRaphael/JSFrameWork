@@ -7,12 +7,6 @@ export default function ComponentsStyle() {
       fonts: Fonts?.fontsUrl
     }),
     Style({
-      selector: '#loading',
-      background: Colors?.bodyColor || '#fff',
-      position: 'absolute',
-      zIndex: '99999'
-    }),
-    Style({
       selector: ["*"],
       scrollBehavior: "smooth",
       margin: "0",
@@ -23,7 +17,7 @@ export default function ComponentsStyle() {
     }),
     Style({
       selector: 'body',
-      backgroundColor: Colors?.bodyColor
+      backgroundColor: '#fff'
     }),
     Style({
       selector: ["body > div:first-child"],
@@ -31,8 +25,8 @@ export default function ComponentsStyle() {
       minWidth: "100%",
     }),
     Style({
-      selector: ["a", "p", "span"],
-      color: Colors?.textColor,
+      selector: ["a", "p", "span", "label"],
+      color: '#000',
       fontFamily: Fonts?.primary,
       textDecoration: "none"
     }),
@@ -44,21 +38,21 @@ export default function ComponentsStyle() {
       selector: ["button", "select", "input", "textarea"],
       fontFamily: Fonts?.primary,
       fontSize: Sizes?.normalText,
-      height: "fit-content",
-      padding: ".25rem .5rem",
       border: "none",
       outline: "none",
-      background: Colors?.bodyColor,
-      boxShadow: `0 0 .1rem ${Colors?.textColor}`,
     }),
     Style({
       selector: ["input", "select", "textarea"],
       width: '100%',
-      color: Colors.text,
+      color: '#000',
     }),
     Style({
       selector: ["input::placeholder", "textarea::placeholder"],
       color: Colors.gray,
+    }),
+    Style({
+      selector: ["textarea::-webkit-scrollbar"],
+      width: "0px",
     }),
     Style({
       selector: ["[data-row]", "[data-column]", "[data-view]", "[data-center]", "[data-expanded]"],

@@ -3,7 +3,8 @@ import { render } from "./hooks.js";
 import ComponentsStyle from "./ComponentsStyle.js";
 import { BreakPoints } from "../../config/config.js";
 
-window.Path = (path) => '/' + path;
+window.getPath = (position) => location.pathname.split('/')[position];
+window.firstUp = (string) => string[0]?.toUpperCase() + string.slice(1, string.length);
 window.Px = (...nums) => nums.join('px ') + 'px';
 window.Pc = (...nums) => nums.join('% ') + '%';
 window.Align = {
@@ -37,26 +38,30 @@ Object.values(BreakPoints).map(breakPoint => {
 const ItemsArray = [];
 
 // ALERT
-export function showAlert({ child, transition }) {
+export function showAlert({ style, child, transition, onClose }) {
+
   ItemsArray.push(ItemsArray.length)
 
-  const key = Math.random().toString().slice(2, 10)
-
-  function closeAlert() {
-    if (!getElement(`alert${key}`) != false) {
-      getElement(`#alert${key}`).style.opacity = '0'
+  let clicked = 0;
+  function closeAlert(transition) {
+    if (getElement(`#alert`)) {
+      getElement(`#alert`).style.opacity = '0'
+      if (onClose) {
+        if (clicked == 0) onClose()
+        clicked++
+      }
       setTimeout(() => {
-        getElement(`#alert${key}`)?.remove()
+        getElement(`#alert`)?.remove()
       }, transition ?? 250);
     }
   }
 
   const element = GestureDetector({
     onclick: event => {
-      if (event.target.id == `alert${key}close`) closeAlert()
+      if (event.target.id == `alertClose`) closeAlert(transition)
     },
     child: Container({
-      id: `alert${key}`,
+      id: `alert`,
       style: {
         position: 'fixed',
         top: Px(0),
@@ -67,9 +72,10 @@ export function showAlert({ child, transition }) {
         zIndex: 9999,
         cursor: 'unset',
         transition: '.25s',
+        ...style,
       },
       child: Center({
-        id: `alert${key}close`,
+        id: `alertClose`,
         child: child
       })
     })
@@ -77,8 +83,17 @@ export function showAlert({ child, transition }) {
 
   render(element, getElement('body'))
   setTimeout(() => {
-    getElement(`#alert${key}`).style.opacity = '1'
+    getElement(`#alert`).style.opacity = '1'
   }, transition ?? 250);
+}
+
+export function hideAlert(transition) {
+  if (getElement(`#alert`)) {
+    getElement(`#alert`).style.opacity = '0'
+    setTimeout(() => {
+      getElement(`#alert`)?.remove()
+    }, transition ?? 250);
+  }
 }
 
 // CONTAINERS
@@ -625,7 +640,7 @@ export function Expanded({ className, id, child, children, crossAxis, style, hov
 
 
 // TEXT
-export function Text(text, { type, className, id, style, hover, animated, contenteditable } = {}) {
+export function Text(text, { type, className, id, style, hover, animated, contenteditable, labelTo } = {}) {
 
   ItemsArray.push(ItemsArray.length)
 
@@ -638,6 +653,8 @@ export function Text(text, { type, className, id, style, hover, animated, conten
   if (className && typeof (className) == 'string') element.className = className
 
   if (id && typeof (id) == 'string') element.id = id
+
+  if (labelTo && typeof labelTo == 'string') element.setAttribute('for', labelTo)
 
   if (contenteditable && typeof contenteditable == 'boolean') element.setAttribute('contenteditable', contenteditable)
 
@@ -692,7 +709,7 @@ export function Text(text, { type, className, id, style, hover, animated, conten
 }
 // TEXT
 
-// INPUT / BUTTON / LINK / CLICK / LIST / ICONTEXT
+// FROM / INPUT / BUTTON / LINK / CLICK / LIST / ICONTEXT
 export function Statefull({ key, child }) {
 
   window[key.name] = key
@@ -700,6 +717,46 @@ export function Statefull({ key, child }) {
   if (key) child.dataset.statefull = key.name
 
   return child
+}
+
+export function Form({ id, children, autocomplete, style }) {
+
+  ItemsArray.push(ItemsArray.length)
+
+  let elemType = 'form'
+
+  let element = document.createElement(elemType)
+
+  if (id && typeof (id) == 'string') element.id = id
+
+  if (typeof (autocomplete) == 'boolean') element.setAttribute('autocomplete', autocomplete ? 'on' : 'off')
+
+  if (children) {
+    children.forEach(item => {
+      render(item, element)
+    })
+  }
+
+  if (style && typeof style == 'object') {
+
+    let identifier = (id && typeof (id) == 'string') ? id : `${elemType}${ItemsArray.length}`
+
+    element.classList.add(identifier)
+
+    if (style && typeof style == 'object') {
+
+      let styleParams = {}
+      let newStyle = Object.entries(style)
+
+      newStyle.unshift(["selector", `.${identifier}`])
+
+      newStyle.map(item => styleParams[item[0]] = item[1])
+
+      Style(styleParams)
+    }
+  }
+
+  return element
 }
 
 export function Select({ className, id, children, style, hover, name, value, animated }) {
@@ -716,7 +773,9 @@ export function Select({ className, id, children, style, hover, name, value, ani
 
   if (name && typeof (name) == 'string') element.name = name
 
-  if (value && typeof (value) == 'string') element.value = value
+  if (value) element.value = value
+
+  element.required = true
 
   if (children) {
     children.forEach(item => {
@@ -782,14 +841,14 @@ export function Option({ child, selected, value }) {
 
   if (selected) element.selected = selected
 
-  if (value && typeof (value) == 'string') element.value = value
+  if (typeof (value) == 'string') element.value = value
 
   if (child) render(child, element)
 
   return element
 }
 
-export function TextInput({ type, className, id, style, hover, autocomplete, rows, maxlength, name, value, placeholder, checked, animated }) {
+export function TextInput({ type, className, id, style, hover, autocomplete, rows, min, max, maxlength, name, value, placeholder, checked, animated }) {
 
   ItemsArray.push(ItemsArray.length)
 
@@ -803,7 +862,7 @@ export function TextInput({ type, className, id, style, hover, autocomplete, row
 
   if (id && typeof (id) == 'string') element.id = id
 
-  if (autocomplete && typeof (autocomplete) == 'string') element.autocomplete = autocomplete
+  if (typeof (autocomplete) == 'boolean') element.setAttribute('autocomplete', autocomplete ? 'on' : 'off')
 
   if (type == 'textarea') if (rows) element.rows = rows
 
@@ -814,6 +873,10 @@ export function TextInput({ type, className, id, style, hover, autocomplete, row
   if (name && typeof (name) == 'string') element.name = name
 
   if (maxlength) element.setAttribute('maxlength', maxlength)
+
+  if (min) element.setAttribute('min', min)
+
+  if (max) element.setAttribute('max', max)
 
   if (value) element.value = value
 
@@ -1278,6 +1341,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
               right: "0",
               height: "100%",
               padding: "10px",
+              width: "min-content",
               ...nextStyle,
             },
             child: Icon({
@@ -1297,6 +1361,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
               left: "0",
               height: "100%",
               padding: "10px",
+              width: "min-content",
               ...prevStyle,
             },
             child: Icon({
@@ -1390,7 +1455,7 @@ export function Image({ className, id, alt, source, sizeMode, size, style, hover
   return element
 }
 
-export function Icon({ name, color, size, zIndex, opacity }) {
+export function Icon({ name, color, size, zIndex, opacity, animated }) {
 
   ItemsArray.push(ItemsArray.length)
 
@@ -1402,9 +1467,9 @@ export function Icon({ name, color, size, zIndex, opacity }) {
 
   if (name && typeof (name) == 'string') element.className += name
 
-  if (color && typeof color == 'string' || size || zIndex || opacity) {
+  let identifier = `${elemType}${ItemsArray.length}`
 
-    let identifier = `${elemType}${ItemsArray.length}`
+  if (color && typeof color == 'string' || size || zIndex || opacity) {
 
     element.classList.add(identifier)
 
@@ -1421,25 +1486,37 @@ export function Icon({ name, color, size, zIndex, opacity }) {
     Style(styleParams)
   }
 
+  if (animated && typeof animated == 'object') {
+
+    let animatedParams = {}
+    let animation = Object.entries(animated)
+
+    animation.unshift(["selector", `${identifier}`])
+
+    animation.map(item => animatedParams[item[0]] = item[1])
+
+    Animated(animatedParams)
+  }
+
   return element
 }
 
 export function Loading({ size, color }) {
 
-  if (size && typeof size != "number") size = null
-
   return Center({
-    animated: {
-      type: "transform",
-      time: 1.5,
-      values: ["rotate(0)", "rotate(360deg)"],
-      count: "infinite",
-      transition: "linear"
-    },
-    child: Icon({
-      name: "fas fa-spinner",
-      color: color || "#444",
-      size: size || 40,
+    child: Container({
+      animated: {
+        type: "transform",
+        time: 1.5,
+        values: ["rotate(0)", "rotate(360deg)"],
+        count: "infinite",
+        transition: "linear"
+      },
+      child: Icon({
+        name: "fas fa-spinner",
+        color: color || "#444",
+        size: size || 40,
+      })
     })
   })
 }
