@@ -59,7 +59,7 @@ function RouterLink({ to, child, children, style, hover }) {
 export function changeRoute(path) {
 
   let e = event || window.event
-  e.preventDefault()
+  e?.preventDefault()
 
   window.history.pushState({}, '', path)
 
