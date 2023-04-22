@@ -43,8 +43,11 @@ function State(initialState, { name }) {
       p.id === index ? { ...p, value: newState } : p
     );
     replaceChild(component, index, component)
-
-    if (then) then()
+    if (then) {
+      setTimeout(() => {
+        then()
+      }, 500);
+    }
   }
 
   osIndex++
@@ -62,7 +65,7 @@ function replaceChild(element, index, component) {
   let oldComponent = document.querySelector("[data-statefull='" + element + "']")
   if (!oldComponent) oldComponent = root.firstChild
 
-  oldComponent.parentNode.replaceChild(eval(component + '()'), oldComponent)
+  if (oldComponent) oldComponent.parentNode.replaceChild(eval(component + '()'), oldComponent)
 }
 
 window.depArray = [];
