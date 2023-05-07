@@ -5,12 +5,15 @@ import { BreakPoints } from "../../config/config.js";
 
 window.getPath = (position) => location.pathname.split('/')[position];
 window.firstUp = (string) => string[0]?.toUpperCase() + string.slice(1, string.length);
+window.Em = (...nums) => nums.join('em ') + 'em';
+window.Rem = (...nums) => nums.join('rem ') + 'rem';
 window.Px = (...nums) => nums.join('px ') + 'px';
 window.Pc = (...nums) => nums.join('% ') + '%';
 window.Align = {
   center: 'center',
   start: 'start',
   end: 'end',
+  spaced: 'space-between',
   spaceBetween: 'space-between',
   spaceEvenly: 'space-evenly',
   spaceAround: 'space-around',
@@ -38,30 +41,32 @@ Object.values(BreakPoints).map(breakPoint => {
 const ItemsArray = [];
 
 // ALERT
-export function showAlert({ style, child, transition, onClose }) {
+export function showAlert({ id = '', style, child, transition, onClose }) {
 
   ItemsArray.push(ItemsArray.length)
 
+  let selector = id ? `#${id}alert` : '#alert';
+
   let clicked = 0;
   function closeAlert(transition) {
-    if (getElement(`#alert`)) {
-      getElement(`#alert`).style.opacity = '0'
+    if (getElement(selector)) {
+      getElement(selector).style.opacity = '0'
       if (onClose) {
         if (clicked == 0) onClose()
         clicked++
       }
       setTimeout(() => {
-        getElement(`#alert`)?.remove()
+        getElement(selector)?.remove()
       }, transition ?? 250);
     }
   }
 
   const element = GestureDetector({
     onclick: event => {
-      if (event.target.id == `alertClose`) closeAlert(transition)
+      if (event.target.id == `${id}alertClose`) closeAlert(transition)
     },
     child: Container({
-      id: `alert`,
+      id: `${id}alert`,
       style: {
         position: 'fixed',
         top: Px(0),
@@ -75,7 +80,7 @@ export function showAlert({ style, child, transition, onClose }) {
         ...style,
       },
       child: Center({
-        id: `alertClose`,
+        id: `${id}alertClose`,
         child: child
       })
     })
@@ -83,15 +88,16 @@ export function showAlert({ style, child, transition, onClose }) {
 
   render(element, getElement('body'))
   setTimeout(() => {
-    getElement(`#alert`).style.opacity = '1'
+    getElement(selector).style.opacity = '1'
   }, transition ?? 250);
 }
 
-export function hideAlert(transition) {
-  if (getElement(`#alert`)) {
-    getElement(`#alert`).style.opacity = '0'
+export function hideAlert(id, transition) {
+  let selector = id ? `#${id}alert` : '#alert';
+  if (getElement(selector)) {
+    getElement(selector).style.opacity = '0'
     setTimeout(() => {
-      getElement(`#alert`)?.remove()
+      getElement(selector)?.remove()
     }, transition ?? 250);
   }
 }
@@ -640,7 +646,7 @@ export function Expanded({ className, id, child, children, crossAxis, style, hov
 
 
 // TEXT
-export function Text(text, { type, className, id, style, hover, animated, contenteditable, labelTo } = {}) {
+export function Text(text, { type, className, id, title, style, hover, animated, contenteditable, labelTo } = {}) {
 
   ItemsArray.push(ItemsArray.length)
 
@@ -657,6 +663,8 @@ export function Text(text, { type, className, id, style, hover, animated, conten
   if (labelTo && typeof labelTo == 'string') element.setAttribute('for', labelTo)
 
   if (contenteditable && typeof contenteditable == 'boolean') element.setAttribute('contenteditable', contenteditable)
+
+  if (title && typeof (title) == 'string') element.setAttribute('title', title);
 
   if (text && typeof text) element.innerHTML = text
 
@@ -1014,7 +1022,7 @@ export function Button({ className, id, child, style, hover, animated }) {
   return element
 }
 
-export function Link({ className, id, to, target, child, children, preventDefault, style, hover, animated }) {
+export function Link({ className, id, to, target, title, child, children, preventDefault, style, hover, animated }) {
 
   ItemsArray.push(ItemsArray.length)
 
@@ -1029,6 +1037,8 @@ export function Link({ className, id, to, target, child, children, preventDefaul
   if (to && typeof (to) == 'string') element.href = to
 
   if (target && typeof (target) == 'string') element.target = target
+
+  if (title && typeof (title) == 'string') element.setAttribute('title', title);
 
   if (child) {
     render(child, element)
@@ -1164,7 +1174,9 @@ export function Separator({ width, height }) {
   let element = document.createElement(elemType)
 
   if (width) element.style.width = width
+  if (width) element.style.minWidth = width
   if (height) element.style.height = height
+  if (height) element.style.minHeight = height
 
   return element
 }
@@ -1376,7 +1388,7 @@ export function Slider({ width, height, border, background, prevStyle, nextStyle
   )
 }
 
-export function Image({ className, id, alt, source, sizeMode, size, style, hover, animated }) {
+export function Image({ className, id, title, alt, source, sizeMode, size, style, hover, animated }) {
 
   ItemsArray.push(ItemsArray.length)
 
@@ -1389,6 +1401,8 @@ export function Image({ className, id, alt, source, sizeMode, size, style, hover
   if (id && typeof (id) == 'string') element.id = id
 
   if (alt && typeof (alt) == 'string') element.alt = alt
+
+  if (title && typeof (title) == 'string') element.setAttribute('title', title);
 
   if (source && typeof (source) == 'string') element.src = source
 
